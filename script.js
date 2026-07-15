@@ -1,5 +1,5 @@
 /* ============================================================
-   Blush Lounge · Masterclass landing — interactions
+   Blush Lounge · Masterclass landing interactions
    ============================================================ */
 (function () {
   "use strict";

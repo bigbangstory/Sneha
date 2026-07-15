@@ -1,4 +1,4 @@
-# The Bridal Masterclass — Landing Page
+# The Bridal Masterclass, Landing Page
 
 A high-conversion landing page for **Blush Lounge by Sneha**'s online pro bridal
 masterclass (Blush School of Beauty), built for Google & Meta ad traffic.
@@ -11,13 +11,13 @@ masterclass (Blush School of Beauty), built for Google & Meta ad traffic.
 
 | File | Purpose |
 |------|---------|
-| `index.html` | The page — all content and structure |
+| `index.html` | The page, all content and structure |
 | `styles.css` | All styling (luxury editorial theme, fully responsive) |
 | `script.js` | Countdown, scroll reveals, mobile menu, sticky mobile CTA |
-| `assets/tracking.js` | **Google + Meta conversion tracking** — add your IDs here |
+| `assets/tracking.js` | **Google + Meta conversion tracking**, add your IDs here |
 | `assets/images/` | Sneha's real photos from the brochure (web-optimised) |
 
-No build step, no dependencies — it's plain HTML/CSS/JS.
+No build step, no dependencies, it's plain HTML/CSS/JS.
 
 ## 1. Add your tracking IDs (Google + Meta)
 
@@ -34,20 +34,20 @@ var CONFIG = {
 ```
 
 Leave any entry as `""` to skip it. You can use Google Tag Manager **or** the direct
-GA4 / Google Ads tags — or both. Also replace `PIXEL_ID` in the `<noscript>` Meta tag
+GA4 / Google Ads tags, or both. Also replace `PIXEL_ID` in the `<noscript>` Meta tag
 inside `index.html` once you have the pixel.
 
 **Events that fire automatically** (already wired to every button):
 
 | Action | Google | Meta | dataLayer (for GTM) |
 |--------|--------|------|---------------------|
-| Page load | PageView | PageView | — |
+| Page load | PageView | PageView |, |
 | Reserve via WhatsApp / Register by email | Ads conversion + GA4 `generate_lead` | `Lead` | `reserve_lead` |
 | "Reserve seat" (scroll-to-form) clicks | GA4 `begin_checkout` | `InitiateCheckout` | `reserve_intent` |
 
 Lead value is set to ₹7,500 (INR) so ad platforms can optimise on value.
 
-> Tip: keep your `?utm_source=...` ad parameters in the landing-page URL — GA4 and
+> Tip: keep your `?utm_source=...` ad parameters in the landing-page URL, GA4 and
 > the pixels read them automatically.
 
 ## 2. Preview locally
@@ -68,12 +68,12 @@ All three serve static files directly; no configuration needed.
 ## How registration works
 
 The price-card form collects **name + WhatsApp number (+ optional city)** and, on submit,
-opens WhatsApp with all the details pre-filled to `+91 99719 33095` — and fires the `Lead`
+opens WhatsApp with all the details pre-filled to `+91 99719 33095`, and fires the `Lead`
 conversion event. No backend or database is needed. There's also an email fallback link.
 
 ## Things you may want to swap
 
-- **Testimonials (biggest conversion lift):** the page has no reviews yet — add 3–5 real
+- **Testimonials (biggest conversion lift):** the page has no reviews yet, add 3–5 real
   student testimonials (name + line + ideally a photo) and it will convert noticeably better.
   Ask me to drop in a testimonials section when you have them.
 - **Portfolio link:** the gallery shows Sneha's work on-page. If you have an external
@@ -81,7 +81,7 @@ conversion event. No backend or database is needed. There's also an email fallba
 - **Bio:** the "Meet Sneha Chowdhury" section is grounded in the brochure. There's an HTML
   comment where you can add years of experience, notable clients, or press.
 - **Images:** replace anything in `assets/images/` (keep the same filenames) to update.
-  Images display at their natural aspect ratio — no cropping or stretching.
+  Images display at their natural aspect ratio, no cropping or stretching.
 
 ---
 Built from the official Blush Lounge masterclass brochure.

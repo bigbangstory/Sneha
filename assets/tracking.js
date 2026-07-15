@@ -6,7 +6,7 @@
    1. Open this file and fill in your IDs in the CONFIG block below.
       - Leave an entry as "" (empty) to skip that platform.
       - You can use EITHER Google Tag Manager (gtm) OR the direct
-        GA4 / Google Ads tags — or both. All three are supported.
+        GA4 / Google Ads tags, or both. All three are supported.
    2. That's it. Every "Reserve" / "Register" button already fires
       the right conversion events (see EVENTS below). No other edits
       needed.

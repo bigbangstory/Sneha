@@ -1,5 +1,5 @@
 /* ============================================================
-   Blush Lounge · The Bridal Masterclass — landing page
+   Blush Lounge · The Bridal Masterclass landing page
    ============================================================ */
 
 :root {
@@ -333,7 +333,7 @@ strong { font-weight: 500; color: var(--ink); }
 .register__lead { font-size: 1.12rem; margin-bottom: 1.8rem; }
 .notes { list-style: none; padding: 0; margin: 0; }
 .notes li { position: relative; padding: .6rem 0 .6rem 1.7rem; border-top: 1px solid rgba(216,190,147,.2); font-size: .96rem; color: var(--light-soft); }
-.notes li::before { content: "—"; position: absolute; left: 0; color: var(--gold-2); }
+.notes li::before { content: "·"; position: absolute; left: 0; color: var(--gold-2); }
 
 .pricecard {
   background: linear-gradient(180deg, var(--ivory), var(--ivory-2));

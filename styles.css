@@ -237,15 +237,15 @@ strong { font-weight: 500; color: var(--ink); }
 }
 .hero__frame img { width: 100%; height: auto; display: block; }
 .hero__frame::after { content:""; position:absolute; inset:0; box-shadow: inset 0 0 0 6px rgba(250,244,234,.5); border-radius: inherit; pointer-events:none; }
-.hero__badge {
-  position: absolute; bottom: 22px; left: -18px;
-  background: var(--wine); color: var(--light);
-  padding: .9rem 1.3rem; border-radius: 3px;
-  box-shadow: var(--shadow-sm); text-align: center;
-  border: 1px solid var(--line-gold);
-}
-.hero__badge-top { display: block; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-2); margin-bottom: .2rem; }
-.hero__badge-count { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; letter-spacing: .02em; }
+.hero__countdown { margin-top: -30px; position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+.hero__countdown-label { font-size: .7rem; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+.countdown { display: flex; gap: .55rem; }
+.countdown__unit { background: var(--wine); border: 1px solid var(--line-gold); border-radius: 9px; padding: .75rem .55rem .6rem; min-width: 66px; text-align: center; box-shadow: var(--shadow-sm); }
+.countdown__num { display: block; font-family: var(--serif); font-size: 2.1rem; font-weight: 500; line-height: 1; color: var(--gold-2); font-variant-numeric: tabular-nums; }
+.countdown__lbl { display: block; font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; color: var(--light-soft); margin-top: .4rem; }
+.countdown--light { justify-content: center; margin: 0 auto 2.2rem; }
+.countdown--light .countdown__unit { background: rgba(255, 255, 255, .06); border-color: rgba(216, 190, 147, .32); }
+.countdown.is-live .countdown__unit { opacity: .72; }
 
 /* ---------- Co-brand strip ---------- */
 .cobrand { background: var(--ivory); padding: clamp(2rem, 4vw, 3.2rem) 0; border-top: 1px solid var(--line); }
@@ -307,7 +307,7 @@ strong { font-weight: 500; color: var(--ink); }
 /* ---------- Gallery ---------- */
 .gallery { columns: 4; column-gap: 1rem; }
 .gallery figure { margin: 0 0 1rem; break-inside: avoid; border-radius: var(--radius); overflow: hidden; box-shadow: 0 18px 40px -26px rgba(0,0,0,.6); }
-.gallery img { width: 100%; transition: transform .7s ease, filter .5s ease; filter: saturate(1.02); }
+.gallery img { width: 100%; height: auto; display: block; transition: transform .7s ease, filter .5s ease; filter: saturate(1.02); }
 .gallery figure:hover img { transform: scale(1.05); }
 
 /* ---------- About Sneha ---------- */
@@ -322,7 +322,7 @@ strong { font-weight: 500; color: var(--ink); }
 .pull { font-family: var(--serif); font-style: italic; font-size: 1.4rem; line-height: 1.4; color: var(--wine-2); border-left: 2px solid var(--gold); padding-left: 1.3rem; margin: 1.6rem 0 0; }
 
 /* ---------- Certification ---------- */
-.cert__media img { border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--line-gold); width: 100%; }
+.cert__media img { border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--line-gold); width: 100%; height: auto; display: block; }
 .cert__logo { height: 72px; width: auto; margin-bottom: 1.2rem; }
 .ticks { list-style: none; padding: 0; margin: 1.4rem 0 0; }
 .ticks li { position: relative; padding: .55rem 0 .55rem 2rem; border-top: 1px solid var(--line); color: var(--ink-soft); }
@@ -390,6 +390,13 @@ strong { font-weight: 500; color: var(--ink); }
 .footer { background: #2A0E16; color: var(--light-soft); padding: clamp(3rem, 5vw, 4.5rem) 0 2rem; }
 .footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem; padding-bottom: 2.2rem; border-bottom: 1px solid rgba(216,190,147,.15); }
 .footer__brand { display: flex; align-items: center; gap: 1rem; }
+.footer__logos { display: inline-flex; align-items: center; gap: 1.1rem; background: var(--ivory); border-radius: 60px; padding: .7rem 1.5rem; }
+.footer__logos img { height: 54px; width: auto; display: block; }
+.footer__logos img.footer__logo--school { height: 48px; }
+.footer__logos-sep { width: 1px; height: 34px; background: var(--line-gold); }
+.footer__credit { text-align: center; font-size: .78rem; letter-spacing: .04em; color: rgba(216, 190, 147, .6); margin: .5rem 0 0; }
+.footer__credit a { color: var(--gold-2); border-bottom: 1px solid transparent; transition: border-color .2s; }
+.footer__credit a:hover { border-color: var(--gold-2); }
 .footer__name { font-family: var(--serif); font-size: 1.5rem; color: var(--light); margin: 0; }
 .footer__name em { color: var(--gold-2); }
 .footer__sub { font-size: .68rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin: .2rem 0 0; }
@@ -484,7 +491,9 @@ strong { font-weight: 500; color: var(--ink); }
   .flow__time { font-size: 1.05rem; }
   .footer__inner { flex-direction: column; text-align: center; }
   .footer__contact { text-align: center; }
-  .hero__badge { left: 50%; transform: translateX(-50%); bottom: -18px; }
+  .hero__countdown { margin-top: -20px; }
+  .countdown__unit { min-width: 56px; padding: .6rem .4rem .5rem; }
+  .countdown__num { font-size: 1.65rem; }
   .stickybar { display: flex; }
   .wafab { right: 16px; bottom: 82px; width: 52px; height: 52px; }
   .wafab svg { width: 28px; height: 28px; }

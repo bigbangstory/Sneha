@@ -51,18 +51,24 @@
 
   /* ---- Countdown to class ---- */
   var target = new Date("2026-08-30T11:00:00+05:30").getTime();
-  var out = document.getElementById("countdown");
-  var tick = function () {
-    if (!out) return;
+  var cds = document.querySelectorAll(".countdown");
+  var pad = function (n) { return n < 10 ? "0" + n : "" + n; };
+  var tickCd = function () {
+    if (!cds.length) return;
     var diff = target - Date.now();
-    if (diff <= 0) { out.textContent = "Class is live"; return; }
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor((diff % 86400000) / 3600000);
-    var m = Math.floor((diff % 3600000) / 60000);
-    out.textContent = d + "d " + h + "h " + m + "m";
+    var live = diff <= 0;
+    var d = live ? 0 : Math.floor(diff / 86400000);
+    var h = live ? 0 : Math.floor((diff % 86400000) / 3600000);
+    var m = live ? 0 : Math.floor((diff % 3600000) / 60000);
+    var s = live ? 0 : Math.floor((diff % 60000) / 1000);
+    cds.forEach(function (c) {
+      var q = function (sel, v) { var el = c.querySelector(sel); if (el) el.textContent = v; };
+      q("[data-d]", pad(d)); q("[data-h]", pad(h)); q("[data-m]", pad(m)); q("[data-s]", pad(s));
+      c.classList.toggle("is-live", live);
+    });
   };
-  tick();
-  setInterval(tick, 30000);
+  tickCd();
+  setInterval(tickCd, 1000);
 
   /* ---- Sticky mobile CTA visibility ---- */
   var bar = document.getElementById("stickybar");

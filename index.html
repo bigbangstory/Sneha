@@ -93,9 +93,14 @@
           <div class="hero__frame">
             <img src="assets/images/registration.jpg" alt="Sneha Chowdhury, bridal makeup artist and founder of Blush Lounge" width="1032" height="1371" fetchpriority="high" />
           </div>
-          <div class="hero__badge" aria-hidden="true">
-            <span class="hero__badge-top">Countdown to class</span>
-            <span class="hero__badge-count" id="countdown">…</span>
+          <div class="hero__countdown">
+            <span class="hero__countdown-label">Class begins in</span>
+            <div class="countdown" role="timer" aria-label="Time remaining until the masterclass">
+              <div class="countdown__unit"><span class="countdown__num" data-d>00</span><span class="countdown__lbl">Days</span></div>
+              <div class="countdown__unit"><span class="countdown__num" data-h>00</span><span class="countdown__lbl">Hrs</span></div>
+              <div class="countdown__unit"><span class="countdown__num" data-m>00</span><span class="countdown__lbl">Min</span></div>
+              <div class="countdown__unit"><span class="countdown__num" data-s>00</span><span class="countdown__lbl">Sec</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -428,6 +433,12 @@
       <div class="wrap finalcta__inner reveal">
         <p class="eyebrow eyebrow--light">Sunday · 30 August 2026 · Live on Zoom</p>
         <h2 class="finalcta__title">Come learn the looks everyone asks about.</h2>
+        <div class="countdown countdown--light" role="timer" aria-label="Time remaining until the masterclass">
+          <div class="countdown__unit"><span class="countdown__num" data-d>00</span><span class="countdown__lbl">Days</span></div>
+          <div class="countdown__unit"><span class="countdown__num" data-h>00</span><span class="countdown__lbl">Hrs</span></div>
+          <div class="countdown__unit"><span class="countdown__num" data-m>00</span><span class="countdown__lbl">Min</span></div>
+          <div class="countdown__unit"><span class="countdown__num" data-s>00</span><span class="countdown__lbl">Sec</span></div>
+        </div>
         <div class="hero__cta hero__cta--center">
           <a class="btn btn--gold" data-track="lead" data-track-method="whatsapp" href="https://wa.me/919971933095?text=Hi%20Blush%20Lounge!%20I%27d%20like%20to%20reserve%20my%20seat%20for%20the%20Online%20Bridal%20Masterclass%20on%2030%20August%202026." target="_blank" rel="noopener">Reserve your seat</a>
           <a class="btn btn--ghost btn--ghost-dark" data-track="lead" data-track-method="email" href="mailto:makeoverbysneha@gmail.com?subject=Bridal%20Masterclass%20Enquiry">Ask a question</a>
@@ -440,10 +451,10 @@
   <footer class="footer">
     <div class="wrap footer__inner">
       <div class="footer__brand">
-        <span class="brand__mark">bl</span>
-        <div>
-          <p class="footer__name">Blush Lounge <em>by Sneha</em></p>
-          <p class="footer__sub">Blush School of Beauty</p>
+        <div class="footer__logos">
+          <img src="assets/images/logo-blush-lounge.png" alt="Blush Lounge · Makeup by Sneha" width="581" height="499" />
+          <span class="footer__logos-sep" aria-hidden="true"></span>
+          <img src="assets/images/logo-blush-school.png" alt="Blush School of Beauty" class="footer__logo--school" width="361" height="347" />
         </div>
       </div>
       <div class="footer__contact">
@@ -453,6 +464,7 @@
       <p class="footer__love">Love, Blush Lounge by Sneha</p>
     </div>
     <p class="footer__legal">© <span id="year">2026</span> Blush Lounge by Sneha · Blush School of Beauty. All rights reserved.</p>
+    <p class="footer__credit">Designed by <a href="https://www.bigbangstory.com/" target="_blank" rel="noopener">Big Bang Story</a></p>
   </footer>
 
   <!-- Floating WhatsApp button -->

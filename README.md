@@ -65,11 +65,34 @@ python3 -m http.server 8000
 
 All three serve static files directly; no configuration needed.
 
-## How registration works
+## Registration form → WhatsApp + Google Sheet
 
-The price-card form collects **name + WhatsApp number (+ optional city)** and, on submit,
-opens WhatsApp with all the details pre-filled to `+91 99719 33095`, and fires the `Lead`
-conversion event. No backend or database is needed. There's also an email fallback link.
+On submit the form (1) logs the lead to your Google Sheet, (2) fires the `Lead` conversion
+event, and (3) opens WhatsApp with the name / number / city pre-filled to `+91 99719 33095`.
+There's also an email fallback link.
+
+### Connect your leads Google Sheet (one-time)
+
+1. Open the Sheet → **Extensions → Apps Script**.
+2. Replace the code with:
+
+   ```js
+   function doPost(e) {
+     var ss = SpreadsheetApp.getActiveSpreadsheet();
+     var sheet = ss.getSheetByName('Leads') || ss.getSheets()[0];
+     if (sheet.getLastRow() === 0) sheet.appendRow(['Timestamp', 'Name', 'Phone', 'City', 'Page']);
+     var d = JSON.parse(e.postData.contents);
+     sheet.appendRow([new Date(), d.name, d.phone, d.city, d.page]);
+     return ContentService.createTextOutput(JSON.stringify({ ok: true }))
+       .setMimeType(ContentService.MimeType.JSON);
+   }
+   ```
+
+3. **Deploy → New deployment → Web app**; set *Execute as: Me* and *Who has access: Anyone*; **Deploy** and authorize.
+4. Copy the Web app URL (ends in `/exec`) and paste it into `SHEET_ENDPOINT` near the top of the
+   reserve-form section in `script.js`.
+
+Every submission then appends a row to your Sheet.
 
 ## Things you may want to swap
 

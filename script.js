@@ -73,23 +73,31 @@
   /* ---- Sticky mobile CTA visibility ---- */
   var bar = document.getElementById("stickybar");
   var register = document.getElementById("register");
+  var footerEl = document.querySelector(".footer");
   if (bar) {
     var barObserver = function () {
       var y = window.scrollY;
       var pastHero = y > window.innerHeight * 0.7;
-      // hide when the register section itself is in view
-      var atRegister = false;
+      // hide when the register section or the footer is in view
+      var hideZone = false;
       if (register) {
         var r = register.getBoundingClientRect();
-        atRegister = r.top < window.innerHeight && r.bottom > 0;
+        if (r.top < window.innerHeight && r.bottom > 0) hideZone = true;
       }
-      bar.classList.toggle("is-visible", pastHero && !atRegister);
+      if (footerEl) {
+        var f = footerEl.getBoundingClientRect();
+        if (f.top < window.innerHeight) hideZone = true;
+      }
+      bar.classList.toggle("is-visible", pastHero && !hideZone);
     };
     window.addEventListener("scroll", barObserver, { passive: true });
     barObserver();
   }
 
-  /* ---- Reserve form -> prefilled WhatsApp + conversion event ---- */
+  /* ---- Reserve form -> Google Sheet + prefilled WhatsApp + conversion event ---- */
+  // Paste your Google Apps Script Web App URL below to log every submission to a
+  // Google Sheet (setup steps are in README.md). Leave "" to skip logging.
+  var SHEET_ENDPOINT = "";
   var form = document.getElementById("reserveForm");
   if (form) {
     form.addEventListener("submit", function (e) {
@@ -100,12 +108,24 @@
       var city = f["city"].value.trim();
       if (!name) { f["name"].focus(); return; }
       if (!phone) { f["phone"].focus(); return; }
+      // 1) Log the lead to your Google Sheet (fire-and-forget)
+      if (SHEET_ENDPOINT) {
+        try {
+          fetch(SHEET_ENDPOINT, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify({ name: name, phone: phone, city: city, page: location.href, submittedAt: new Date().toISOString() })
+          });
+        } catch (err) {}
+      }
+      // 2) Fire the conversion event (Google Ads / GA4 / Meta)
+      if (window.blushTrack) window.blushTrack.lead("form");
+      // 3) Open WhatsApp with the details prefilled
       var text = "Hi Blush Lounge! I'd like to reserve my seat for the Online Bridal Masterclass on 30 August 2026." +
         "\n\nName: " + name + "\nWhatsApp: " + phone + (city ? "\nCity: " + city : "") +
         "\n\nPlease share the payment details.";
-      var url = "https://wa.me/919971933095?text=" + encodeURIComponent(text);
-      if (window.blushTrack) window.blushTrack.lead("form");
-      window.open(url, "_blank", "noopener");
+      window.open("https://wa.me/919971933095?text=" + encodeURIComponent(text), "_blank", "noopener");
     });
   }
 

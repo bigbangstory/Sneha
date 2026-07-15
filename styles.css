@@ -14,7 +14,8 @@
   --gold-2:     #C8A66E;
   --gold-soft:  #D8BE93;
   --rose:       #C98C82;
-  --ink:        #2C221C;
+  --ink:        #3A2A27;
+  --heading:    #48182C;
   --ink-soft:   #6A594C;
   --ink-mute:   #8C7B6C;
   --light:      #F6E9D4;
@@ -23,8 +24,8 @@
   --line-gold:  rgba(176, 138, 79, .35);
 
   /* type */
-  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --sans:  "Jost", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans:  "Manrope", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 
   --wrap: 1180px;
   --radius: 4px;
@@ -83,7 +84,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.1;
   letter-spacing: .003em;
   margin: 0 0 1.2rem;
-  color: var(--ink);
+  color: var(--heading);
 }
 .h2.center { text-align: center; }
 .h2.light, .h2 em { font-style: italic; }
@@ -97,7 +98,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.08;
   margin: .2rem 0 1rem;
 }
-.h3, .h4 { color: var(--ink); }
+.h3, .h4 { color: var(--heading); }
 h4 { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; margin: 0 0 .4rem; letter-spacing: .01em; }
 
 p { margin: 0 0 1.05rem; }
@@ -215,7 +216,7 @@ strong { font-weight: 500; color: var(--ink); }
 .hero__title {
   font-family: var(--serif); font-weight: 500;
   font-size: clamp(3.1rem, 8vw, 5.6rem); line-height: .98; letter-spacing: .005em;
-  margin: 0 0 1.4rem; color: var(--ink);
+  margin: 0 0 1.4rem; color: var(--heading);
 }
 .hero__title em { font-style: italic; color: var(--wine-2); display: inline-block; }
 .hero__lead { font-size: 1.16rem; color: var(--ink-soft); max-width: 30rem; margin-bottom: 1.8rem; }
@@ -391,7 +392,7 @@ strong { font-weight: 500; color: var(--ink); }
 .finalcta__title { font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.08; margin: 0 0 2rem; color: var(--light); }
 
 /* ---------- Footer ---------- */
-.footer { background: #2A0E16; color: var(--light-soft); padding: clamp(3rem, 5vw, 4.5rem) 0 2rem; }
+.footer { background: #351226; color: var(--light-soft); padding: clamp(3rem, 5vw, 4.5rem) 0 2rem; }
 .footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem; padding-bottom: 2.2rem; border-bottom: 1px solid rgba(216,190,147,.15); }
 .footer__brand { display: flex; align-items: center; gap: 1rem; }
 .footer__logos { display: inline-flex; align-items: center; gap: 1.1rem; background: var(--ivory); border-radius: 60px; padding: .7rem 1.5rem; }
@@ -415,14 +416,14 @@ strong { font-weight: 500; color: var(--ink); }
   position: fixed; right: 24px; bottom: 26px; z-index: 65;
   width: 58px; height: 58px; border-radius: 50%;
   display: grid; place-items: center;
-  background: #25D366; color: #fff;
-  border: 2px solid rgba(255, 255, 255, .9);
-  box-shadow: 0 12px 28px -8px rgba(37, 211, 102, .65), 0 4px 14px rgba(0, 0, 0, .18);
+  background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #fff;
+  border: 2px solid rgba(255, 255, 255, .82);
+  box-shadow: 0 12px 28px -8px rgba(176, 138, 79, .7), 0 4px 14px rgba(0, 0, 0, .18);
   transition: transform .25s ease, box-shadow .25s ease;
 }
 .wafab svg { width: 32px; height: 32px; fill: #fff; position: relative; z-index: 1; }
-.wafab:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 18px 34px -8px rgba(37, 211, 102, .8), 0 6px 16px rgba(0, 0, 0, .2); }
-.wafab__pulse { position: absolute; inset: -2px; border-radius: 50%; background: #25D366; opacity: .55; animation: wapulse 2.6s ease-out infinite; }
+.wafab:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 18px 34px -8px rgba(176, 138, 79, .9), 0 6px 16px rgba(0, 0, 0, .2); }
+.wafab__pulse { position: absolute; inset: -2px; border-radius: 50%; background: var(--gold); opacity: .5; animation: wapulse 2.6s ease-out infinite; }
 @keyframes wapulse { 0% { transform: scale(1); opacity: .5; } 70% { transform: scale(1.55); opacity: 0; } 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .wafab__pulse { animation: none; display: none; } }
 
@@ -500,6 +501,7 @@ strong { font-weight: 500; color: var(--ink); }
   .countdown__unit { min-width: 0; flex: 1; padding: .6rem .3rem .5rem; }
   .countdown__num { font-size: 1.5rem; }
   .stickybar { display: flex; }
+  .footer { padding-bottom: 96px; }
   .wafab { right: 16px; bottom: 82px; width: 52px; height: 52px; }
   .wafab svg { width: 28px; height: 28px; }
   .brand__logo { height: 38px; }

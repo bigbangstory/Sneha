@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Bridal Masterclass · Blush Lounge by Sneha</title>
+  <meta name="description" content="An online pro bridal masterclass with Sneha Chowdhury of Blush Lounge — two complete signature looks, live demonstrations, product knowledge and industry Q&A. 30 August 2026, live on Zoom." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="The Bridal Masterclass · Blush Lounge by Sneha" />
+  <meta property="og:description" content="Two complete signature bridal looks, live on Zoom. 30 August 2026 · Blush School of Beauty." />
+  <meta property="og:image" content="assets/images/hero-cover.jpg" />
+
+  <!-- Favicon (inline monogram) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233E1520'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23C8A66E' text-anchor='middle'%3Ebl%3C/text%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Conversion tracking: Google (GA4 / Ads / GTM) + Meta Pixel. Add your IDs in assets/tracking.js -->
+  <script src="assets/tracking.js"></script>
+</head>
+<body>
+  <!-- Meta Pixel noscript fallback (works even if JS is blocked; replace PIXEL_ID after you set it in tracking.js) -->
+  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1" /></noscript>
+
+  <!-- ===== Announcement bar ===== -->
+  <div class="announce">
+    <span class="announce__dot" aria-hidden="true"></span>
+    <span>Live online masterclass · <strong>Sunday, 30 August 2026</strong> · Limited seats</span>
+    <a class="announce__link" href="#register" data-track="intent" data-track-method="announce">Reserve your seat →</a>
+  </div>
+
+  <!-- ===== Navigation ===== -->
+  <header class="nav" id="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="#top" aria-label="Blush Lounge by Sneha — home">
+        <span class="brand__mark">bl</span>
+        <span class="brand__text">
+          <span class="brand__name">Blush Lounge</span>
+          <span class="brand__sub">by Sneha</span>
+        </span>
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="#about-class">The Class</a>
+        <a href="#looks">The Looks</a>
+        <a href="#curriculum">Curriculum</a>
+        <a href="#sneha">About Sneha</a>
+        <a href="#register">Register</a>
+      </nav>
+
+      <a class="btn btn--gold nav__cta" href="#register" data-track="intent" data-track-method="nav">Reserve Seat</a>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="wrap hero__inner">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">Blush School of Beauty · Online Pro Course</p>
+          <h1 class="hero__title">The Bridal<br /><em>Masterclass</em></h1>
+          <p class="hero__lead">
+            Two complete Blush Lounge bridal demonstrations in a single, immersive
+            online session — from effortless daytime radiance to rich, traditional
+            nighttime glamour.
+          </p>
+
+          <ul class="facts" aria-label="Class details">
+            <li><span class="facts__k">When</span><span class="facts__v">Sun · 30 Aug 2026</span></li>
+            <li><span class="facts__k">Time</span><span class="facts__v">11:00 AM – 2:30 PM IST</span></li>
+            <li><span class="facts__k">Where</span><span class="facts__v">Live on Zoom</span></li>
+            <li><span class="facts__k">Fee</span><span class="facts__v">₹7,500 + GST</span></li>
+          </ul>
+
+          <div class="hero__cta">
+            <a class="btn btn--gold" href="#register" data-track="intent" data-track-method="hero">Reserve your seat</a>
+            <a class="btn btn--ghost" href="#looks">See the two looks</a>
+          </div>
+          <p class="hero__note">No gatekeeping. No shortcuts. Just real artistry, shared with complete transparency.</p>
+        </div>
+
+        <div class="hero__media reveal">
+          <div class="hero__frame">
+            <img src="assets/images/hero-cover.jpg" alt="A Blush Lounge bride in a soft, luminous bridal look with emerald and diamond jewellery" width="1093" height="1748" fetchpriority="high" />
+          </div>
+          <div class="hero__badge" aria-hidden="true">
+            <span class="hero__badge-top">Countdown to class</span>
+            <span class="hero__badge-count" id="countdown">—</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Co-brand strip ===== -->
+    <section class="cobrand">
+      <div class="wrap cobrand__inner reveal">
+        <p class="cobrand__label">An online masterclass by</p>
+        <div class="cobrand__logos">
+          <img src="assets/images/logo-blush-lounge.png" alt="Blush Lounge — Makeup by Sneha" class="cobrand__logo" width="640" height="620" />
+          <span class="cobrand__div" aria-hidden="true"></span>
+          <img src="assets/images/logo-blush-school.png" alt="Blush School of Beauty" class="cobrand__logo cobrand__logo--school" width="480" height="520" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Marquee strip ===== -->
+    <div class="strip" aria-hidden="true">
+      <div class="strip__track">
+        <span>Two complete bridal looks</span><span class="strip__dot">✦</span>
+        <span>Live demonstrations</span><span class="strip__dot">✦</span>
+        <span>Product knowledge &amp; vanity building</span><span class="strip__dot">✦</span>
+        <span>Industry &amp; technique Q&amp;A</span><span class="strip__dot">✦</span>
+        <span>Certification</span><span class="strip__dot">✦</span>
+        <span>Two complete bridal looks</span><span class="strip__dot">✦</span>
+        <span>Live demonstrations</span><span class="strip__dot">✦</span>
+        <span>Product knowledge &amp; vanity building</span><span class="strip__dot">✦</span>
+        <span>Industry &amp; technique Q&amp;A</span><span class="strip__dot">✦</span>
+        <span>Certification</span><span class="strip__dot">✦</span>
+      </div>
+    </div>
+
+    <!-- ===== About the class ===== -->
+    <section class="section" id="about-class">
+      <div class="wrap grid-2">
+        <div class="reveal">
+          <p class="eyebrow">A one-time opportunity</p>
+          <h2 class="h2">Experience two complete Blush&nbsp;Lounge demonstrations in a single masterclass.</h2>
+        </div>
+        <div class="reveal stack">
+          <p>
+            For the first time, Sneha will devote an entire online session to sharing her
+            approach to <strong>skin preparation, product selection, product placement</strong>,
+            and the techniques used to create a fresh, luminous and beautifully polished finish.
+          </p>
+          <p>
+            You'll learn two of her most sought-after signature looks, from effortless daytime
+            modern bridal beauty to sophisticated nighttime bridal glamour — designed to take you
+            beyond products and trends and into the thought process behind every look.
+          </p>
+          <p class="lede">
+            Whether you're a working makeup artist, an aspiring artist, or simply someone who
+            loves beauty, you'll leave with a deeper understanding of technique, artistry and refinement.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== The two looks ===== -->
+    <section class="section section--cream" id="looks">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <p class="eyebrow">The Curriculum · Two Signature Looks</p>
+          <h2 class="h2 center">A day and a night, mastered.</h2>
+        </div>
+
+        <article class="look reveal">
+          <div class="look__media">
+            <img src="assets/images/day-bridal.jpg" alt="Day Bridal look — fresh, radiant skin and soft, refined bridal beauty" loading="lazy" width="1400" height="1646" />
+            <span class="look__tag">Look One</span>
+          </div>
+          <div class="look__copy">
+            <p class="eyebrow">11:00 AM – 12:30 PM</p>
+            <h3 class="h3">Day Bridal</h3>
+            <p>
+              The Day Bridal look is centred around fresh, radiant skin and soft, refined beauty
+              that enhances the bride's natural features.
+            </p>
+            <p>
+              Learn how to create a luminous complexion, seamless blending, delicate eye definition,
+              naturally sculpted brows and balanced tones that come together in a timeless, elegant
+              finish designed to last beautifully throughout the day.
+            </p>
+          </div>
+        </article>
+
+        <article class="look look--reverse reveal">
+          <div class="look__media">
+            <img src="assets/images/night-bridal.jpg" alt="Night Bridal look — polished, elevated glam with depth and dimension" loading="lazy" width="1400" height="1906" />
+            <span class="look__tag">Look Two</span>
+          </div>
+          <div class="look__copy">
+            <p class="eyebrow">1:00 PM – 2:30 PM</p>
+            <h3 class="h3">Night Bridal</h3>
+            <p>
+              The Night Bridal look focuses on creating a polished, elevated glam with greater
+              depth, definition and dimension.
+            </p>
+            <p>
+              Explore techniques for building a flawless complexion, creating statement eyes,
+              enhancing facial structure and selecting richer tones that photograph beautifully
+              under evening lighting — while maintaining a sophisticated, long-lasting finish.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Class flow / schedule ===== -->
+    <section class="section" id="schedule">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <p class="eyebrow">The Schedule</p>
+          <h2 class="h2 center">Class flow</h2>
+        </div>
+        <ol class="flow">
+          <li class="flow__item reveal">
+            <span class="flow__time">11:00 – 12:30</span>
+            <div class="flow__body">
+              <h4>Look 1 · Modern Daytime Bridal Beauty</h4>
+              <p>The signature Blush Lounge fresh &amp; dewy bridal aesthetic, demonstrated in full.</p>
+            </div>
+          </li>
+          <li class="flow__item flow__item--sub reveal">
+            <span class="flow__time">12:30 – 1:00</span>
+            <div class="flow__body"><h4>Technique Q&amp;A</h4></div>
+          </li>
+          <li class="flow__item reveal">
+            <span class="flow__time">1:00 – 2:30</span>
+            <div class="flow__body">
+              <h4>Look 2 · Traditional Night Bridal Beauty</h4>
+              <p>The Blush Lounge signature rich and traditional bridal aesthetic.</p>
+            </div>
+          </li>
+          <li class="flow__item flow__item--sub reveal">
+            <span class="flow__time">After</span>
+            <div class="flow__body"><h4>Industry Q&amp;A</h4><p>Growth, branding &amp; career — with Sneha and guest specialists.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== What you'll learn ===== -->
+    <section class="section section--cream" id="curriculum">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <p class="eyebrow">A complete approach to modern bridal artistry</p>
+          <h2 class="h2 center">What you'll take away</h2>
+          <p class="section__intro">
+            This masterclass goes beyond two looks. It's designed to help you adapt your artistry
+            across different bridal styles, client preferences and beauty briefs — understanding
+            not just <em>what</em> works, but <em>why</em> it works.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="card reveal"><span class="card__num">01</span><h4>Skin Prep &amp; Luminous Base</h4><p>Preparation and product placement for a fresh, radiant, long-wearing finish.</p></div>
+          <div class="card reveal"><span class="card__num">02</span><h4>Seamless Blending &amp; Eyes</h4><p>Delicate eye definition, sculpted brows and balanced, photogenic tones.</p></div>
+          <div class="card reveal"><span class="card__num">03</span><h4>Day Bridal Look</h4><p>The complete soft, contemporary daytime bridal finish, start to finish.</p></div>
+          <div class="card reveal"><span class="card__num">04</span><h4>Night Bridal Look</h4><p>Elevated glam with depth, statement eyes and richer evening tones.</p></div>
+          <div class="card reveal"><span class="card__num">05</span><h4>Product Knowledge &amp; Vanity Building</h4><p>Curated staples and kit essentials, and how to build a reliable bridal kit.</p></div>
+          <div class="card reveal"><span class="card__num">06</span><h4>Interactive Q&amp;A with Sneha</h4><p>Ask anything — every single question will be addressed, live.</p></div>
+          <div class="card reveal"><span class="card__num">07</span><h4>Personal Brand &amp; Visibility</h4><p>Guidance from PR, social and photography specialists on growing as an MUA.</p></div>
+          <div class="card reveal"><span class="card__num">08</span><h4>Certification</h4><p>A certificate of completion — and a path to future opportunities.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Who it's for ===== -->
+    <section class="section" id="who">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <p class="eyebrow">Who it's for</p>
+          <h2 class="h2 center">Made for everyone who loves the craft</h2>
+        </div>
+        <div class="who">
+          <div class="who__col reveal"><h4>Working Artists</h4><p>Refine your technique and add two signature bridal looks to your repertoire.</p></div>
+          <div class="who__col reveal"><h4>Aspiring Artists</h4><p>Learn the fundamentals of professional bridal artistry from the ground up.</p></div>
+          <div class="who__col reveal"><h4>Beauty Lovers</h4><p>Go behind the thought process of every look, shared with full transparency.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Portfolio gallery ===== -->
+    <section class="section section--dark" id="gallery">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <p class="eyebrow eyebrow--light">Step inside the virtual classroom</p>
+          <h2 class="h2 center light">The signature Blush Lounge bridal aesthetic</h2>
+        </div>
+        <div class="gallery">
+          <figure class="reveal"><img src="assets/images/quote-profile.jpg" alt="Bridal profile with soft glam and jasmine gajra" loading="lazy" width="965" height="1716" /></figure>
+          <figure class="reveal"><img src="assets/images/gallery-1.jpg" alt="Bride in a pink lehenga framed in a doorway" loading="lazy" width="1400" height="2100" /></figure>
+          <figure class="reveal"><img src="assets/images/philosophy.jpg" alt="Radiant bridal beauty with a nose ring and floral hair" loading="lazy" width="1144" height="1700" /></figure>
+          <figure class="reveal"><img src="assets/images/gallery-3.jpg" alt="Traditional night bridal look with emerald jewellery" loading="lazy" width="729" height="1093" /></figure>
+          <figure class="reveal"><img src="assets/images/sessions.jpg" alt="Soft glam beauty look with cascading waves" loading="lazy" width="912" height="1181" /></figure>
+          <figure class="reveal"><img src="assets/images/approach.jpg" alt="Rich red traditional bridal look" loading="lazy" width="1369" height="1826" /></figure>
+          <figure class="reveal"><img src="assets/images/day-bridal-2.jpg" alt="Modern daytime bridal look on a dark backdrop" loading="lazy" width="1400" height="1646" /></figure>
+          <figure class="reveal"><img src="assets/images/gallery-2.jpg" alt="Fresh, dewy bridal beauty in a garden setting" loading="lazy" width="820" height="1229" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About Sneha ===== -->
+    <section class="section" id="sneha">
+      <div class="wrap sneha">
+        <div class="sneha__media reveal">
+          <img src="assets/images/registration.jpg" alt="Sneha Chowdhury, founder of Blush Lounge and Blush School of Beauty" loading="lazy" width="1032" height="1371" />
+          <img class="sneha__media-2" src="assets/images/student-portfolio.jpg" alt="Sneha teaching a student, applying makeup during a class" loading="lazy" width="1400" height="2100" />
+        </div>
+        <div class="sneha__copy reveal">
+          <p class="eyebrow">Your instructor</p>
+          <h2 class="h2">Meet Sneha Chowdhury</h2>
+          <p>
+            Sneha Chowdhury is the artist and educator behind <strong>Blush Lounge</strong> and the
+            <strong>Blush School of Beauty</strong>. Her bridal work is known for two things
+            in equal measure: a fresh, luminous daytime aesthetic and a rich, elevated
+            traditional glamour.
+          </p>
+          <p>
+            In this masterclass she teaches the way she works — openly. Expect an immersive
+            day of demonstrations, honest conversations, industry insight and the fine details
+            that truly elevate your artistry.
+          </p>
+          <blockquote class="pull">“No gatekeeping. No shortcuts. Just real artistry, shared with complete transparency.”</blockquote>
+          <!-- Have a fuller bio, years of experience, notable clients, or press? Add them here. -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Certification ===== -->
+    <section class="section section--cream" id="certification">
+      <div class="wrap grid-2 grid-2--center">
+        <div class="cert__media reveal">
+          <img src="assets/images/certification.jpg" alt="A Blush School of Beauty student receiving a certificate from Sneha" loading="lazy" width="960" height="1440" />
+        </div>
+        <div class="reveal stack">
+          <img src="assets/images/logo-blush-school.png" alt="Blush School of Beauty" class="cert__logo" width="480" height="520" />
+          <p class="eyebrow">Your reward</p>
+          <h2 class="h2">Certification &amp; future opportunities</h2>
+          <p>All passing students receive a <strong>certificate of completion</strong> at the end of the masterclass.</p>
+          <p>
+            Top performers are invited to become part of the Blush Beauty School as
+            <strong>mentors, assistants and team members</strong> — with the chance to explore
+            paid opportunities.
+          </p>
+          <ul class="ticks">
+            <li>Certificate of completion for all passing students</li>
+            <li>Pathway into the Blush Beauty School team</li>
+            <li>Fee is 100% adjustable toward the in-person 6-day Pro Makeup Class (Delhi, 2027)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Registration / Pricing ===== -->
+    <section class="section section--dark" id="register">
+      <div class="wrap register">
+        <div class="register__intro reveal">
+          <p class="eyebrow eyebrow--light">Course fee &amp; registration</p>
+          <h2 class="h2 light">Reserve your seat</h2>
+          <p class="register__lead">
+            A single, focused live session — two complete bridal looks, two Q&amp;As, product and
+            vanity guidance, and a certificate. Seats are limited and admitted one person per ID.
+          </p>
+          <ul class="notes">
+            <li>This is a <strong>live class only</strong> — no recordings are provided afterwards.</li>
+            <li>Each registration admits <strong>one person per ID</strong>.</li>
+            <li>The Zoom link is shared on the <strong>morning of the class</strong>.</li>
+            <li>Ask as many questions as you like — every one will be addressed.</li>
+            <li>Once a seat is confirmed, the fee is non-refundable (but 100% adjustable to the Delhi 2027 in-person course).</li>
+          </ul>
+        </div>
+
+        <aside class="pricecard reveal">
+          <p class="pricecard__label">Online Masterclass <span class="pricecard__seats">Limited seats</span></p>
+          <p class="pricecard__price">₹7,500 <span>+ GST</span></p>
+          <p class="pricecard__meta">per person · Sunday, 30 August 2026 · 11:00 AM IST</p>
+          <p class="pricecard__reassure">✓ 100% adjustable toward the in-person Delhi 2027 course</p>
+          <ul class="pricecard__list">
+            <li>Day Bridal &amp; Night Bridal demonstrations</li>
+            <li>Technique &amp; Industry Q&amp;A</li>
+            <li>Product knowledge &amp; vanity building</li>
+            <li>Certificate of completion</li>
+            <li>Career &amp; personal-branding guidance</li>
+          </ul>
+          <a class="btn btn--gold btn--block" id="whatsappCta" data-track="lead" data-track-method="whatsapp" href="https://wa.me/919971933095?text=Hi%20Blush%20Lounge!%20I%27d%20like%20to%20reserve%20my%20seat%20for%20the%20Online%20Bridal%20Masterclass%20on%2030%20August%202026.%20Please%20share%20the%20payment%20details." target="_blank" rel="noopener">Reserve via WhatsApp</a>
+          <a class="btn btn--ghost btn--ghost-dark btn--block" data-track="lead" data-track-method="email" href="mailto:makeoverbysneha@gmail.com?subject=Bridal%20Masterclass%20Registration%20%E2%80%94%2030%20Aug%202026&body=Hi%20Sneha%2C%0A%0AI%27d%20like%20to%20register%20for%20the%20Online%20Bridal%20Masterclass%20on%2030%20August%202026.%0A%0AName%3A%0APhone%3A%0ACity%3A%0A%0AThank%20you!">Register by email</a>
+          <p class="pricecard__note">Confirm your seat and we'll share bank / UPI details.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section" id="faq">
+      <div class="wrap wrap--narrow">
+        <div class="section__head reveal">
+          <p class="eyebrow">Good to know</p>
+          <h2 class="h2 center">Frequently asked</h2>
+        </div>
+        <div class="faq">
+          <details class="faq__item reveal"><summary>Is the class recorded?</summary><p>No — this is a live class only. No recordings are provided afterwards, so you'll want to attend live.</p></details>
+          <details class="faq__item reveal"><summary>How do I confirm and pay?</summary><p>Message us on WhatsApp (+91 99719 33095) or email makeoverbysneha@gmail.com and we'll share the bank / UPI details to confirm your seat.</p></details>
+          <details class="faq__item reveal"><summary>What's the refund policy?</summary><p>Once a seat is confirmed, the fee is non-refundable. However, it is <strong>100% adjustable</strong> toward our in-person 6-day Pro Makeup Class happening in Delhi in 2027.</p></details>
+          <details class="faq__item reveal"><summary>Who is this masterclass for?</summary><p>Working makeup artists, aspiring artists, and anyone who loves beauty and wants to understand the artistry behind a flawless bridal look.</p></details>
+          <details class="faq__item reveal"><summary>Do I get a certificate?</summary><p>Yes — all passing students receive a certificate of completion, and top performers are invited to join the Blush Beauty School team.</p></details>
+          <details class="faq__item reveal"><summary>When do I receive the Zoom link?</summary><p>The Zoom link is shared on the morning of the class. Each registration admits one person per ID.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Final CTA ===== -->
+    <section class="finalcta">
+      <div class="wrap finalcta__inner reveal">
+        <p class="eyebrow eyebrow--light">Sunday · 30 August 2026 · Live on Zoom</p>
+        <h2 class="finalcta__title">Come learn the looks everyone asks about.</h2>
+        <div class="hero__cta hero__cta--center">
+          <a class="btn btn--gold" data-track="lead" data-track-method="whatsapp" href="https://wa.me/919971933095?text=Hi%20Blush%20Lounge!%20I%27d%20like%20to%20reserve%20my%20seat%20for%20the%20Online%20Bridal%20Masterclass%20on%2030%20August%202026." target="_blank" rel="noopener">Reserve your seat</a>
+          <a class="btn btn--ghost btn--ghost-dark" data-track="lead" data-track-method="email" href="mailto:makeoverbysneha@gmail.com?subject=Bridal%20Masterclass%20Enquiry">Ask a question</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__brand">
+        <span class="brand__mark">bl</span>
+        <div>
+          <p class="footer__name">Blush Lounge <em>by Sneha</em></p>
+          <p class="footer__sub">Blush School of Beauty</p>
+        </div>
+      </div>
+      <div class="footer__contact">
+        <a href="https://wa.me/919971933095" target="_blank" rel="noopener">WhatsApp · +91 99719 33095</a>
+        <a href="mailto:makeoverbysneha@gmail.com">makeoverbysneha@gmail.com</a>
+      </div>
+      <p class="footer__love">Love, Blush Lounge by Sneha</p>
+    </div>
+    <p class="footer__legal">© <span id="year">2026</span> Blush Lounge by Sneha · Blush School of Beauty. All rights reserved.</p>
+  </footer>
+
+  <!-- Sticky mobile CTA -->
+  <div class="stickybar" id="stickybar">
+    <div class="stickybar__info">
+      <span class="stickybar__price">₹7,500 <small>+ GST</small></span>
+      <span class="stickybar__meta">30 Aug · Live on Zoom</span>
+    </div>
+    <a class="btn btn--gold" href="#register" data-track="intent" data-track-method="sticky">Reserve seat</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

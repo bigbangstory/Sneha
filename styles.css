@@ -24,7 +24,7 @@
   --line-gold:  rgba(176, 138, 79, .35);
 
   /* type */
-  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
   --sans:  "Manrope", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 
   --wrap: 1180px;

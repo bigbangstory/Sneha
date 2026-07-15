@@ -65,13 +65,23 @@ python3 -m http.server 8000
 
 All three serve static files directly; no configuration needed.
 
+## How registration works
+
+The price-card form collects **name + WhatsApp number (+ optional city)** and, on submit,
+opens WhatsApp with all the details pre-filled to `+91 99719 33095` — and fires the `Lead`
+conversion event. No backend or database is needed. There's also an email fallback link.
+
 ## Things you may want to swap
 
+- **Testimonials (biggest conversion lift):** the page has no reviews yet — add 3–5 real
+  student testimonials (name + line + ideally a photo) and it will convert noticeably better.
+  Ask me to drop in a testimonials section when you have them.
 - **Portfolio link:** the gallery shows Sneha's work on-page. If you have an external
   student-portfolio link, point the "Step inside the virtual classroom" heading there.
-- **Bio:** the "Meet Sneha" section is grounded in the brochure. There's an HTML comment
-  where you can add years of experience, notable clients, or press.
+- **Bio:** the "Meet Sneha Chowdhury" section is grounded in the brochure. There's an HTML
+  comment where you can add years of experience, notable clients, or press.
 - **Images:** replace anything in `assets/images/` (keep the same filenames) to update.
+  Images display at their natural aspect ratio — no cropping or stretching.
 
 ---
 Built from the official Blush Lounge masterclass brochure.

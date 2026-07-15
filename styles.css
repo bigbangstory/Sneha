@@ -163,7 +163,10 @@ strong { font-weight: 500; color: var(--ink); }
 .nav.is-scrolled { box-shadow: 0 8px 30px -20px rgba(62,21,32,.5); border-color: var(--line); }
 .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 74px; }
 
-.brand { display: flex; align-items: center; gap: .7rem; }
+.brand { display: flex; align-items: center; gap: .8rem; }
+.brand__logo { height: 54px; width: auto; display: block; }
+.brand__logo--school { height: 48px; }
+.brand__sep { width: 1px; height: 34px; background: var(--line-gold); }
 .brand__mark {
   font-family: var(--serif); font-style: italic; font-weight: 600;
   font-size: 1.25rem; color: var(--gold-2);
@@ -232,7 +235,7 @@ strong { font-weight: 500; color: var(--ink); }
   overflow: hidden; box-shadow: var(--shadow);
   border: 1px solid var(--line-gold);
 }
-.hero__frame img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3/4.2; }
+.hero__frame img { width: 100%; height: auto; display: block; }
 .hero__frame::after { content:""; position:absolute; inset:0; box-shadow: inset 0 0 0 6px rgba(250,244,234,.5); border-radius: inherit; pointer-events:none; }
 .hero__badge {
   position: absolute; bottom: 22px; left: -18px;
@@ -266,7 +269,7 @@ strong { font-weight: 500; color: var(--ink); }
 .look:first-of-type { margin-top: 0; }
 .look--reverse .look__media { order: 2; }
 .look__media { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line-gold); }
-.look__media img { width: 100%; aspect-ratio: 4/4.4; object-fit: cover; transition: transform .8s ease; }
+.look__media img { width: 100%; height: auto; display: block; transition: transform .8s ease; }
 .look__media:hover img { transform: scale(1.04); }
 .look__tag {
   position: absolute; top: 18px; left: 18px;
@@ -310,7 +313,7 @@ strong { font-weight: 500; color: var(--ink); }
 /* ---------- About Sneha ---------- */
 .sneha { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
 .sneha__media { position: relative; }
-.sneha__media > img:first-child { border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--line-gold); width: 100%; aspect-ratio: 3/3.8; object-fit: cover; object-position: top center; }
+.sneha__media > img:first-child { border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--line-gold); width: 100%; height: auto; display: block; }
 .sneha__media-2 {
   position: absolute; width: 46%; bottom: -30px; right: -24px;
   border-radius: var(--radius); box-shadow: var(--shadow); border: 4px solid var(--ivory);
@@ -348,6 +351,21 @@ strong { font-weight: 500; color: var(--ink); }
 .pricecard__list li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 600; }
 .pricecard .btn + .btn { margin-top: .7rem; }
 .pricecard__note { text-align: center; font-size: .82rem; color: var(--ink-mute); margin: 1rem 0 0; }
+
+/* ---------- Reserve form ---------- */
+.rform { text-align: left; }
+.rform__field { display: block; margin-bottom: .85rem; }
+.rform__field > span { display: block; font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: .35rem; }
+.rform__field em { font-style: normal; color: var(--ink-mute); letter-spacing: .04em; }
+.rform input { width: 100%; font-family: var(--sans); font-weight: 300; font-size: 1rem; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: .8rem .9rem; transition: border-color .2s ease, box-shadow .2s ease; }
+.rform input::placeholder { color: #bda98f; }
+.rform input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(176,138,79,.16); }
+.rform input:user-invalid { border-color: var(--rose); }
+.rform .btn { margin-top: .6rem; }
+.rform__priv { text-align: center; font-size: .74rem; color: var(--ink-mute); margin: .7rem 0 0; }
+.rform__alt { text-align: center; font-size: .84rem; color: var(--ink-mute); margin: .7rem 0 0; }
+.rform__alt a { color: var(--wine-2); border-bottom: 1px solid var(--line-gold); }
+.rform__alt a:hover { color: var(--gold); }
 
 /* ---------- FAQ ---------- */
 .faq__item { border-top: 1px solid var(--line); }
@@ -452,6 +470,9 @@ strong { font-weight: 500; color: var(--ink); }
   .footer__contact { text-align: center; }
   .hero__badge { left: 50%; transform: translateX(-50%); bottom: -18px; }
   .stickybar { display: flex; }
+  .brand__logo { height: 38px; }
+  .brand__logo--school { height: 34px; }
+  .brand__sep { height: 26px; }
   .cobrand__logos { gap: 1.5rem; }
   .cobrand__logo { height: 60px; }
   .cobrand__logo--school { height: 54px; }

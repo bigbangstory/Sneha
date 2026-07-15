@@ -39,12 +39,10 @@
   <!-- ===== Navigation ===== -->
   <header class="nav" id="nav">
     <div class="wrap nav__inner">
-      <a class="brand" href="#top" aria-label="Blush Lounge by Sneha — home">
-        <span class="brand__mark">bl</span>
-        <span class="brand__text">
-          <span class="brand__name">Blush Lounge</span>
-          <span class="brand__sub">by Sneha</span>
-        </span>
+      <a class="brand" href="#top" aria-label="Blush Lounge and Blush School of Beauty — home">
+        <img src="assets/images/logo-blush-lounge.png" alt="Blush Lounge — Makeup by Sneha" class="brand__logo" width="581" height="499" />
+        <span class="brand__sep" aria-hidden="true"></span>
+        <img src="assets/images/logo-blush-school.png" alt="Blush School of Beauty" class="brand__logo brand__logo--school" width="361" height="347" />
       </a>
 
       <nav class="nav__links" id="navLinks" aria-label="Primary">
@@ -93,7 +91,7 @@
 
         <div class="hero__media reveal">
           <div class="hero__frame">
-            <img src="assets/images/hero-cover.jpg" alt="A Blush Lounge bride in a soft, luminous bridal look with emerald and diamond jewellery" width="1093" height="1748" fetchpriority="high" />
+            <img src="assets/images/registration.jpg" alt="Sneha Chowdhury, bridal makeup artist and founder of Blush Lounge" width="1032" height="1371" fetchpriority="high" />
           </div>
           <div class="hero__badge" aria-hidden="true">
             <span class="hero__badge-top">Countdown to class</span>
@@ -108,9 +106,9 @@
       <div class="wrap cobrand__inner reveal">
         <p class="cobrand__label">An online masterclass by</p>
         <div class="cobrand__logos">
-          <img src="assets/images/logo-blush-lounge.png" alt="Blush Lounge — Makeup by Sneha" class="cobrand__logo" width="640" height="620" />
+          <img src="assets/images/logo-blush-lounge.png" alt="Blush Lounge — Makeup by Sneha" class="cobrand__logo" width="581" height="499" />
           <span class="cobrand__div" aria-hidden="true"></span>
-          <img src="assets/images/logo-blush-school.png" alt="Blush School of Beauty" class="cobrand__logo cobrand__logo--school" width="480" height="520" />
+          <img src="assets/images/logo-blush-school.png" alt="Blush School of Beauty" class="cobrand__logo cobrand__logo--school" width="361" height="347" />
         </div>
       </div>
     </section>
@@ -290,6 +288,7 @@
           <h2 class="h2 center light">The signature Blush Lounge bridal aesthetic</h2>
         </div>
         <div class="gallery">
+          <figure class="reveal"><img src="assets/images/hero-cover.jpg" alt="Soft, luminous bridal look with emerald and diamond jewellery" loading="lazy" width="1093" height="1748" /></figure>
           <figure class="reveal"><img src="assets/images/quote-profile.jpg" alt="Bridal profile with soft glam and jasmine gajra" loading="lazy" width="965" height="1716" /></figure>
           <figure class="reveal"><img src="assets/images/gallery-1.jpg" alt="Bride in a pink lehenga framed in a doorway" loading="lazy" width="1400" height="2100" /></figure>
           <figure class="reveal"><img src="assets/images/philosophy.jpg" alt="Radiant bridal beauty with a nose ring and floral hair" loading="lazy" width="1144" height="1700" /></figure>
@@ -306,8 +305,7 @@
     <section class="section" id="sneha">
       <div class="wrap sneha">
         <div class="sneha__media reveal">
-          <img src="assets/images/registration.jpg" alt="Sneha Chowdhury, founder of Blush Lounge and Blush School of Beauty" loading="lazy" width="1032" height="1371" />
-          <img class="sneha__media-2" src="assets/images/student-portfolio.jpg" alt="Sneha teaching a student, applying makeup during a class" loading="lazy" width="1400" height="2100" />
+          <img src="assets/images/student-portfolio.jpg" alt="Sneha Chowdhury applying bridal makeup during a Blush Lounge class" loading="lazy" width="1400" height="2100" />
         </div>
         <div class="sneha__copy reveal">
           <p class="eyebrow">Your instructor</p>
@@ -336,7 +334,7 @@
           <img src="assets/images/certification.jpg" alt="A Blush School of Beauty student receiving a certificate from Sneha" loading="lazy" width="960" height="1440" />
         </div>
         <div class="reveal stack">
-          <img src="assets/images/logo-blush-school.png" alt="Blush School of Beauty" class="cert__logo" width="480" height="520" />
+          <img src="assets/images/logo-blush-school.png" alt="Blush School of Beauty" class="cert__logo" width="361" height="347" />
           <p class="eyebrow">Your reward</p>
           <h2 class="h2">Certification &amp; future opportunities</h2>
           <p>All passing students receive a <strong>certificate of completion</strong> at the end of the masterclass.</p>
@@ -385,8 +383,23 @@
             <li>Certificate of completion</li>
             <li>Career &amp; personal-branding guidance</li>
           </ul>
-          <a class="btn btn--gold btn--block" id="whatsappCta" data-track="lead" data-track-method="whatsapp" href="https://wa.me/919971933095?text=Hi%20Blush%20Lounge!%20I%27d%20like%20to%20reserve%20my%20seat%20for%20the%20Online%20Bridal%20Masterclass%20on%2030%20August%202026.%20Please%20share%20the%20payment%20details." target="_blank" rel="noopener">Reserve via WhatsApp</a>
-          <a class="btn btn--ghost btn--ghost-dark btn--block" data-track="lead" data-track-method="email" href="mailto:makeoverbysneha@gmail.com?subject=Bridal%20Masterclass%20Registration%20%E2%80%94%2030%20Aug%202026&body=Hi%20Sneha%2C%0A%0AI%27d%20like%20to%20register%20for%20the%20Online%20Bridal%20Masterclass%20on%2030%20August%202026.%0A%0AName%3A%0APhone%3A%0ACity%3A%0A%0AThank%20you!">Register by email</a>
+          <form class="rform" id="reserveForm" novalidate>
+            <label class="rform__field">
+              <span>Full name</span>
+              <input type="text" name="name" required autocomplete="name" placeholder="Your name" />
+            </label>
+            <label class="rform__field">
+              <span>WhatsApp number</span>
+              <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="+91 00000 00000" />
+            </label>
+            <label class="rform__field">
+              <span>City <em>(optional)</em></span>
+              <input type="text" name="city" autocomplete="address-level2" placeholder="City" />
+            </label>
+            <button type="submit" class="btn btn--gold btn--block">Reserve my seat →</button>
+            <p class="rform__priv">🔒 We'll only message you about your seat — no spam.</p>
+            <p class="rform__alt">Prefer email? <a data-track="lead" data-track-method="email" href="mailto:makeoverbysneha@gmail.com?subject=Bridal%20Masterclass%20Registration%20%E2%80%94%2030%20Aug%202026&body=Hi%20Sneha%2C%0A%0AI%27d%20like%20to%20register%20for%20the%20Online%20Bridal%20Masterclass%20on%2030%20August%202026.%0A%0AName%3A%0APhone%3A%0ACity%3A%0A%0AThank%20you!">Register by email</a></p>
+          </form>
           <p class="pricecard__note">Confirm your seat and we'll share bank / UPI details.</p>
         </aside>
       </div>

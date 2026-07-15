@@ -83,6 +83,26 @@
     barObserver();
   }
 
+  /* ---- Reserve form -> prefilled WhatsApp + conversion event ---- */
+  var form = document.getElementById("reserveForm");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var f = form.elements;
+      var name = f["name"].value.trim();
+      var phone = f["phone"].value.trim();
+      var city = f["city"].value.trim();
+      if (!name) { f["name"].focus(); return; }
+      if (!phone) { f["phone"].focus(); return; }
+      var text = "Hi Blush Lounge! I'd like to reserve my seat for the Online Bridal Masterclass on 30 August 2026." +
+        "\n\nName: " + name + "\nWhatsApp: " + phone + (city ? "\nCity: " + city : "") +
+        "\n\nPlease share the payment details.";
+      var url = "https://wa.me/919971933095?text=" + encodeURIComponent(text);
+      if (window.blushTrack) window.blushTrack.lead("form");
+      window.open(url, "_blank", "noopener");
+    });
+  }
+
   /* ---- Current year ---- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());

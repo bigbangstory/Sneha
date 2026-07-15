@@ -53,7 +53,7 @@
   var gallery = document.querySelector(".gallery");
   if (gallery) {
     var figs = Array.prototype.slice.call(gallery.children).filter(function (n) { return n.tagName === "FIGURE"; });
-    var colCount = function () { var w = window.innerWidth; return w <= 620 ? 2 : (w <= 980 ? 3 : 4); };
+    var colCount = function () { return window.innerWidth <= 620 ? 2 : 3; };
     var built = 0;
     var buildMasonry = function () {
       var cols = colCount();

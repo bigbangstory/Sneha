@@ -79,7 +79,12 @@ There's also an email fallback link.
    ```js
    function doPost(e) {
      var ss = SpreadsheetApp.getActiveSpreadsheet();
-     var sheet = ss.getSheetByName('Leads') || ss.getSheets()[0];
+     var sheet = ss.getSheetByName('form leads');
+     if (!sheet) {
+       sheet = ss.getSheets().filter(function (s) {
+         return s.getName().toLowerCase().trim() === 'form leads';
+       })[0] || ss.getSheets()[0];
+     }
      if (sheet.getLastRow() === 0) sheet.appendRow(['Timestamp', 'Name', 'Phone', 'City', 'Page']);
      var d = JSON.parse(e.postData.contents);
      sheet.appendRow([new Date(), d.name, d.phone, d.city, d.page]);

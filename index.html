@@ -26,14 +26,15 @@
   <script src="assets/tracking.js"></script>
 </head>
 <body>
-  <!-- Meta Pixel noscript fallback (works even if JS is blocked; replace PIXEL_ID after you set it in tracking.js) -->
-  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1" /></noscript>
+  <!-- Meta Pixel noscript fallback (works even if JS is blocked) -->
+  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=3444548752378307&ev=PageView&noscript=1" /></noscript>
 
   <!-- ===== Announcement bar ===== -->
   <div class="announce">
     <span class="announce__dot" aria-hidden="true"></span>
-    <span>Live online masterclass · <strong>Sunday, 30 August 2026</strong> · Limited seats</span>
-    <a class="announce__link" href="#register" data-track="intent" data-track-method="announce">Reserve your seat →</a>
+    <span class="eb-on"><strong>Early bird: ₹5,000</strong> instead of ₹7,500 · ends 30 July</span>
+    <span class="eb-off">Live online masterclass · <strong>Sunday, 30 August 2026</strong> · Limited seats</span>
+    <a class="announce__link" href="#register" data-track="intent" data-track-method="announce">Claim your seat →</a>
   </div>
 
   <!-- ===== Navigation ===== -->
@@ -79,7 +80,7 @@
             <li><span class="facts__k">When</span><span class="facts__v">Sun · 30 Aug 2026</span></li>
             <li><span class="facts__k">Time</span><span class="facts__v">11:00 AM – 2:30 PM IST</span></li>
             <li><span class="facts__k">Where</span><span class="facts__v">Live on Zoom</span></li>
-            <li><span class="facts__k">Fee</span><span class="facts__v">₹7,500 + GST</span></li>
+            <li><span class="facts__k">Fee</span><span class="facts__v"><span class="eb-on"><s>₹7,500</s> ₹5,000</span><span class="eb-off">₹7,500</span> + GST</span></li>
           </ul>
 
           <div class="hero__cd">
@@ -381,8 +382,22 @@
 
         <aside class="pricecard reveal">
           <p class="pricecard__label">Online Masterclass <span class="pricecard__seats">Limited seats</span></p>
-          <p class="pricecard__price">₹7,500 <span>+ GST</span></p>
+          <p class="ebbadge eb-on">Early bird · Save ₹2,500</p>
+          <p class="pricecard__price">
+            <span class="eb-on"><s class="pricecard__was">₹7,500</s> ₹5,000 <span>+ GST</span></span>
+            <span class="eb-off">₹7,500 <span>+ GST</span></span>
+          </p>
           <p class="pricecard__meta">per person · Sunday, 30 August 2026 · 11:00 AM IST</p>
+          <div class="ebdeadline eb-on">
+            <span class="ebdeadline__label">Early bird price ends in</span>
+            <div class="countdown countdown--sm" data-eb-countdown role="timer" aria-label="Time remaining on the early bird price">
+              <div class="countdown__unit"><span class="countdown__num" data-d>00</span><span class="countdown__lbl">Days</span></div>
+              <div class="countdown__unit"><span class="countdown__num" data-h>00</span><span class="countdown__lbl">Hrs</span></div>
+              <div class="countdown__unit"><span class="countdown__num" data-m>00</span><span class="countdown__lbl">Min</span></div>
+              <div class="countdown__unit"><span class="countdown__num" data-s>00</span><span class="countdown__lbl">Sec</span></div>
+            </div>
+            <span class="ebdeadline__note">After 30 July the fee returns to ₹7,500 + GST.</span>
+          </div>
           <p class="pricecard__reassure">✓ 100% adjustable toward the in-person Delhi 2027 course</p>
           <ul class="pricecard__list">
             <li>Day Bridal &amp; Night Bridal demonstrations</li>
@@ -422,6 +437,7 @@
         </div>
         <div class="faq">
           <details class="faq__item reveal"><summary>Is the class recorded?</summary><p>No, this is a live class only. No recordings are provided afterwards, so you'll want to attend live.</p></details>
+          <details class="faq__item reveal eb-on"><summary>What is the early bird price?</summary><p>Until <strong>30 July</strong> your seat is <strong>₹5,000 + GST</strong> instead of ₹7,500 + GST, a saving of ₹2,500. After 30 July the fee returns to ₹7,500 + GST, so confirm now to lock the lower price.</p></details>
           <details class="faq__item reveal"><summary>How do I confirm and pay?</summary><p>Message us on WhatsApp (+91 99719 33095) or email makeoverbysneha@gmail.com and we'll share the bank / UPI details to confirm your seat.</p></details>
           <details class="faq__item reveal"><summary>What's the refund policy?</summary><p>Once a seat is confirmed, the fee is non-refundable. However, it is <strong>100% adjustable</strong> toward our in-person 6-day Pro Makeup Class happening in Delhi in 2027.</p></details>
           <details class="faq__item reveal"><summary>Who is this masterclass for?</summary><p>Working makeup artists, aspiring artists, and anyone who loves beauty and wants to understand the artistry behind a flawless bridal look.</p></details>
@@ -436,6 +452,7 @@
       <div class="wrap finalcta__inner reveal">
         <p class="eyebrow eyebrow--light">Sunday · 30 August 2026 · Live on Zoom</p>
         <h2 class="finalcta__title">Come learn the looks everyone asks about.</h2>
+        <p class="finalcta__price eb-on">Early bird <strong>₹5,000 + GST</strong> until 30 July, then ₹7,500 + GST.</p>
         <div class="countdown countdown--light" role="timer" aria-label="Time remaining until the masterclass">
           <div class="countdown__unit"><span class="countdown__num" data-d>00</span><span class="countdown__lbl">Days</span></div>
           <div class="countdown__unit"><span class="countdown__num" data-h>00</span><span class="countdown__lbl">Hrs</span></div>
@@ -479,8 +496,8 @@
   <!-- Sticky mobile CTA -->
   <div class="stickybar" id="stickybar">
     <div class="stickybar__info">
-      <span class="stickybar__price">₹7,500 <small>+ GST</small></span>
-      <span class="stickybar__meta">30 Aug · Live on Zoom</span>
+      <span class="stickybar__price"><span class="eb-on"><s>₹7,500</s> ₹5,000</span><span class="eb-off">₹7,500</span> <small>+ GST</small></span>
+      <span class="stickybar__meta"><span class="eb-on">Early bird ends 30 July</span><span class="eb-off">30 Aug · Live on Zoom</span></span>
     </div>
     <a class="btn btn--gold" href="#register" data-track="intent" data-track-method="sticky">Reserve seat</a>
   </div>

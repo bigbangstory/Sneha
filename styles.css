@@ -514,3 +514,46 @@ strong { font-weight: 500; color: var(--ink); }
   .finalcta__inner .hero__cta { flex-direction: column; }
   .finalcta__inner .btn { width: 100%; }
 }
+
+/* ===== Early bird offer ===== */
+/* Early bird is live by default. script.js adds .eb-expired to <html> after the
+   deadline, which flips every .eb-on / .eb-off pair automatically. */
+.eb-off { display: none; }
+.eb-expired .eb-on { display: none; }
+.eb-expired .eb-off { display: inline; }
+
+.ebbadge {
+  display: inline-block; margin: 0 0 .5rem;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  color: #4A1220; font-size: .66rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: .4rem .8rem; border-radius: 40px;
+}
+.pricecard__was { color: var(--muted); font-weight: 400; margin-right: .35rem; opacity: .75; }
+.pricecard__price s { text-decoration-thickness: 2px; }
+
+.ebdeadline {
+  margin: 0 0 1.1rem; padding: .9rem 1rem 1rem;
+  background: rgba(176, 138, 79, .09);
+  border: 1px solid var(--line-gold); border-radius: 10px;
+  text-align: center;
+}
+.ebdeadline__label {
+  display: block; font-size: .62rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: .55rem;
+}
+.ebdeadline__note { display: block; font-size: .68rem; color: var(--muted); margin-top: .6rem; }
+.countdown--sm { justify-content: center; gap: .4rem; }
+.countdown--sm .countdown__unit { min-width: 50px; padding: .5rem .3rem .45rem; }
+.countdown--sm .countdown__num { font-size: 1.3rem; }
+.countdown--sm .countdown__lbl { font-size: .5rem; margin-top: .3rem; }
+
+.finalcta__price { color: var(--light-soft); font-size: .95rem; margin: -.4rem 0 1.6rem; }
+.finalcta__price strong { color: var(--gold-2); font-weight: 500; }
+.stickybar__price s { opacity: .6; font-size: .78em; margin-right: .2rem; font-weight: 400; }
+.facts__v s { opacity: .6; font-weight: 400; margin-right: .18rem; }
+
+@media (max-width: 480px) {
+  .countdown--sm .countdown__unit { min-width: 0; flex: 1; }
+  .countdown--sm .countdown__num { font-size: 1.15rem; }
+}

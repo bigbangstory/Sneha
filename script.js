@@ -84,23 +84,37 @@
     }, { passive: true });
   }
 
-  /* ---- Countdown to class ---- */
-  var target = new Date("2026-08-30T11:00:00+05:30").getTime();
-  var cds = document.querySelectorAll(".countdown");
+  /* ---- Countdowns: class start + early bird deadline ---- */
+  var CLASS_AT = new Date("2026-08-30T11:00:00+05:30").getTime();
+  var EARLYBIRD_ENDS = new Date("2026-07-30T23:59:59+05:30").getTime();
+  var classCds = document.querySelectorAll(".countdown:not([data-eb-countdown])");
+  var ebCds = document.querySelectorAll("[data-eb-countdown]");
   var pad = function (n) { return n < 10 ? "0" + n : "" + n; };
-  var tickCd = function () {
-    if (!cds.length) return;
-    var diff = target - Date.now();
-    var live = diff <= 0;
-    var d = live ? 0 : Math.floor(diff / 86400000);
-    var h = live ? 0 : Math.floor((diff % 86400000) / 3600000);
-    var m = live ? 0 : Math.floor((diff % 3600000) / 60000);
-    var s = live ? 0 : Math.floor((diff % 60000) / 1000);
-    cds.forEach(function (c) {
+
+  var paint = function (nodes, deadline) {
+    if (!nodes.length) return;
+    var diff = deadline - Date.now();
+    var over = diff <= 0;
+    var d = over ? 0 : Math.floor(diff / 86400000);
+    var h = over ? 0 : Math.floor((diff % 86400000) / 3600000);
+    var m = over ? 0 : Math.floor((diff % 3600000) / 60000);
+    var s = over ? 0 : Math.floor((diff % 60000) / 1000);
+    nodes.forEach(function (c) {
       var q = function (sel, v) { var el = c.querySelector(sel); if (el) el.textContent = v; };
       q("[data-d]", pad(d)); q("[data-h]", pad(h)); q("[data-m]", pad(m)); q("[data-s]", pad(s));
-      c.classList.toggle("is-live", live);
+      c.classList.toggle("is-live", over);
     });
+  };
+
+  // Flip the page to regular pricing once the early bird window closes.
+  var syncEarlyBird = function () {
+    document.documentElement.classList.toggle("eb-expired", Date.now() > EARLYBIRD_ENDS);
+  };
+
+  var tickCd = function () {
+    paint(classCds, CLASS_AT);
+    paint(ebCds, EARLYBIRD_ENDS);
+    syncEarlyBird();
   };
   tickCd();
   setInterval(tickCd, 1000);
@@ -157,7 +171,9 @@
       // 2) Fire the conversion event (Google Ads / GA4 / Meta)
       if (window.blushTrack) window.blushTrack.lead("form");
       // 3) Open WhatsApp with the details prefilled
-      var text = "Hi Blush Lounge! I'd like to reserve my seat for the Online Bridal Masterclass on 30 August 2026." +
+      var eb = Date.now() <= EARLYBIRD_ENDS;
+      var text = "Hi Blush Lounge! I'd like to reserve my seat for the Online Bridal Masterclass on 30 August 2026" +
+        (eb ? " at the early bird price of Rs 5,000 + GST." : ".") +
         "\n\nName: " + name + "\nWhatsApp: " + phone + (city ? "\nCity: " + city : "") +
         "\n\nPlease share the payment details.";
       window.open("https://wa.me/919971933095?text=" + encodeURIComponent(text), "_blank", "noopener");

@@ -27,11 +27,15 @@
     ga4:       "",   // Google Analytics 4, e.g. "G-XXXXXXXXXX"
     googleAds: "",   // Google Ads conversion ID, e.g. "AW-123456789"
     adsLabel:  "",   // Google Ads conversion LABEL for a lead, e.g. "AbC-D_efG12"
-    metaPixel: ""    // Meta (Facebook) Pixel ID, e.g. "1234567890123456"
+    metaPixel: "3444548752378307"    // Meta (Facebook) Pixel ID
   };
   /* =================== END OF CONFIG ==================== */
 
   var isSet = function (v) { return typeof v === "string" && v.length > 3 && v.indexOf("X") === -1; };
+
+  /* ---- Current ticket price (early bird until 30 July 2026, then full fee) ---- */
+  var EARLYBIRD_ENDS = new Date("2026-07-30T23:59:59+05:30").getTime();
+  var price = function () { return Date.now() > EARLYBIRD_ENDS ? 7500 : 5000; };
 
   // dataLayer is always available (works with or without GTM)
   window.dataLayer = window.dataLayer || [];
@@ -77,19 +81,21 @@
   /* ---- Public event helpers ---- */
   window.blushTrack = {
     lead: function (method) {
-      dl({ event: "reserve_lead", method: method || "unknown" });
+      var v = price();
+      dl({ event: "reserve_lead", method: method || "unknown", value: v });
       if (typeof gtag === "function") {
-        if (isSet(CONFIG.ga4)) gtag("event", "generate_lead", { method: method, currency: "INR", value: 7500 });
+        if (isSet(CONFIG.ga4)) gtag("event", "generate_lead", { method: method, currency: "INR", value: v });
         if (isSet(CONFIG.googleAds) && isSet(CONFIG.adsLabel)) {
-          gtag("event", "conversion", { send_to: CONFIG.googleAds + "/" + CONFIG.adsLabel, value: 7500, currency: "INR" });
+          gtag("event", "conversion", { send_to: CONFIG.googleAds + "/" + CONFIG.adsLabel, value: v, currency: "INR" });
         }
       }
-      if (typeof fbq === "function") fbq("track", "Lead", { content_name: "Bridal Masterclass", currency: "INR", value: 7500 });
+      if (typeof fbq === "function") fbq("track", "Lead", { content_name: "Bridal Masterclass", currency: "INR", value: v });
     },
     intent: function (method) {
-      dl({ event: "reserve_intent", method: method || "cta" });
-      if (typeof gtag === "function" && isSet(CONFIG.ga4)) gtag("event", "begin_checkout", { currency: "INR", value: 7500 });
-      if (typeof fbq === "function") fbq("track", "InitiateCheckout", { content_name: "Bridal Masterclass", currency: "INR", value: 7500 });
+      var v = price();
+      dl({ event: "reserve_intent", method: method || "cta", value: v });
+      if (typeof gtag === "function" && isSet(CONFIG.ga4)) gtag("event", "begin_checkout", { currency: "INR", value: v });
+      if (typeof fbq === "function") fbq("track", "InitiateCheckout", { content_name: "Bridal Masterclass", currency: "INR", value: v });
     }
   };
 

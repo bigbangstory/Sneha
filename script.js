@@ -168,8 +168,8 @@
           });
         } catch (err) {}
       }
-      // 2) Fire the conversion event (Google Ads / GA4 / Meta)
-      if (window.blushTrack) window.blushTrack.lead("form");
+      // 2) Fire the single conversion event (Meta / GA4 / Google Ads)
+      if (window.blushTrack) window.blushTrack.convert("form");
       // 3) Open WhatsApp with the details prefilled
       var eb = Date.now() <= EARLYBIRD_ENDS;
       var text = "Hi Blush Lounge! I'd like to reserve my seat for the Online Bridal Masterclass on 30 August 2026" +

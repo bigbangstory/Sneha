@@ -11,12 +11,21 @@
       the right conversion events (see EVENTS below). No other edits
       needed.
 
-   EVENTS THAT FIRE (used by ad platforms to optimise & report):
-   - Page load ............ Google PageView + Meta PageView
-   - Reserve/Register click  Google Ads conversion + GA4 "generate_lead"
-                             + Meta "Lead"  + dataLayer "reserve_lead"
-   - Reserve-intent click .. GA4 "begin_checkout" + Meta "InitiateCheckout"
-                             + dataLayer "reserve_intent"
+   EVENTS THAT FIRE
+   There is exactly ONE conversion event, so Events Manager and Google Ads
+   stay clean and you only ever optimise toward a single action:
+
+   - Page load ......... Meta "PageView" + Google page_view  (not a conversion)
+   - Any contact ....... Meta "Lead" + GA4 "generate_lead" + the Google Ads
+                         conversion. Fires when the visitor submits the form,
+                         or taps WhatsApp / call / email. De-duplicated per
+                         visit, so one person = one conversion no matter how
+                         many buttons they tap. How they reached out is sent
+                         as the "contact_method" parameter (form, whatsapp,
+                         call, email), not as a separate event.
+
+   The "Reserve seat" buttons that only scroll to the form are recorded in
+   dataLayer only, never sent to Meta or Google Ads.
    ============================================================ */
 (function () {
   "use strict";
@@ -78,38 +87,94 @@
     window.fbq("track", "PageView");
   }
 
-  /* ---- Public event helpers ---- */
+  /* ============================================================
+     ONE conversion event
+     ------------------------------------------------------------
+     Whatever the visitor does to reach out (submits the form, taps
+     WhatsApp, taps a call button, taps email) fires exactly ONE
+     conversion: Meta "Lead" + GA4 "generate_lead" + the Google Ads
+     conversion. It is de-duplicated per visit, so a single person
+     tapping WhatsApp three times still counts as one conversion.
+
+     The "how they contacted us" detail rides along as a parameter
+     (contact_method), so you can still segment in reporting without
+     creating extra event types in Events Manager.
+     ============================================================ */
+  var FIRED_KEY = "blush_converted";
+  var firedMemory = false;
+
+  function alreadyFired() {
+    if (firedMemory) return true;
+    try { return sessionStorage.getItem(FIRED_KEY) === "1"; } catch (e) { return false; }
+  }
+  function markFired() {
+    firedMemory = true;
+    try { sessionStorage.setItem(FIRED_KEY, "1"); } catch (e) {}
+  }
+
   window.blushTrack = {
-    lead: function (method) {
+    /* The single conversion. Safe to call from anywhere, any number of times. */
+    convert: function (method) {
+      if (alreadyFired()) return false;
+      markFired();
       var v = price();
-      dl({ event: "reserve_lead", method: method || "unknown", value: v });
+      var how = method || "unknown";
+      dl({ event: "reserve_lead", contact_method: how, value: v, currency: "INR" });
       if (typeof gtag === "function") {
-        if (isSet(CONFIG.ga4)) gtag("event", "generate_lead", { method: method, currency: "INR", value: v });
+        if (isSet(CONFIG.ga4)) {
+          gtag("event", "generate_lead", { contact_method: how, currency: "INR", value: v });
+        }
         if (isSet(CONFIG.googleAds) && isSet(CONFIG.adsLabel)) {
           gtag("event", "conversion", { send_to: CONFIG.googleAds + "/" + CONFIG.adsLabel, value: v, currency: "INR" });
         }
       }
-      if (typeof fbq === "function") fbq("track", "Lead", { content_name: "Bridal Masterclass", currency: "INR", value: v });
+      if (typeof fbq === "function") {
+        fbq("track", "Lead", { content_name: "Bridal Masterclass", contact_method: how, currency: "INR", value: v });
+      }
+      return true;
     },
-    intent: function (method) {
-      var v = price();
-      dl({ event: "reserve_intent", method: method || "cta", value: v });
-      if (typeof gtag === "function" && isSet(CONFIG.ga4)) gtag("event", "begin_checkout", { currency: "INR", value: v });
-      if (typeof fbq === "function") fbq("track", "InitiateCheckout", { content_name: "Bridal Masterclass", currency: "INR", value: v });
+
+    /* Page-navigation CTAs (the "Reserve seat" buttons that only scroll down).
+       Recorded in dataLayer for funnel insight only. Deliberately NOT sent to
+       Meta or Google Ads, so they never show up as conversions. */
+    nudge: function (method) {
+      dl({ event: "reserve_intent", contact_method: method || "cta" });
     }
   };
+  // Backwards-compatible aliases
+  window.blushTrack.lead = window.blushTrack.convert;
+  window.blushTrack.intent = window.blushTrack.nudge;
 
-  /* ---- Auto-bind CTAs via data attributes ---- */
-  function bind() {
-    document.querySelectorAll("[data-track]").forEach(function (el) {
-      el.addEventListener("click", function () {
-        var type = el.getAttribute("data-track");
-        var method = el.getAttribute("data-track-method") || "";
-        if (type === "lead") window.blushTrack.lead(method);
-        else if (type === "intent") window.blushTrack.intent(method);
-      });
-    });
+  /* ---- Auto-bind ---- */
+  function isContactLink(el) {
+    var href = (el.getAttribute("href") || "").toLowerCase();
+    return href.indexOf("wa.me") > -1 || href.indexOf("api.whatsapp.com") > -1 ||
+           href.indexOf("tel:") === 0 || href.indexOf("mailto:") === 0;
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);
-  else bind();
+
+  // One delegated listener handles the whole page, so buttons added to the
+  // markup later (a call button, a second WhatsApp link, anything) are tracked
+  // automatically with no extra code.
+  document.addEventListener("click", function (e) {
+    var el = e.target && e.target.closest ? e.target.closest("[data-track], a[href]") : null;
+    if (!el) return;
+
+    // 1) Explicitly tagged elements win
+    var tagged = el.closest("[data-track]");
+    if (tagged) {
+      var type = tagged.getAttribute("data-track");
+      var method = tagged.getAttribute("data-track-method") || "";
+      if (type === "lead" || type === "convert") window.blushTrack.convert(method);
+      else window.blushTrack.nudge(method);
+      return;
+    }
+
+    // 2) Any WhatsApp / call / email link counts as the conversion
+    if (el.tagName === "A" && isContactLink(el)) {
+      var href = (el.getAttribute("href") || "").toLowerCase();
+      var how = href.indexOf("tel:") === 0 ? "call"
+              : href.indexOf("mailto:") === 0 ? "email" : "whatsapp";
+      window.blushTrack.convert(how);
+    }
+  }, true);
 })();

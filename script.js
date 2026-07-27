@@ -143,10 +143,71 @@
     barObserver();
   }
 
-  /* ---- Reserve form -> Google Sheet + prefilled WhatsApp + conversion event ---- */
-  // Paste your Google Apps Script Web App URL below to log every submission to a
-  // Google Sheet (setup steps are in README.md). Leave "" to skip logging.
+  /* ============================================================
+     Lead capture
+     Every form submission is saved to the Supabase "masterclass_leads"
+     table BEFORE WhatsApp opens, so the lead is recorded even if the
+     person never taps send in WhatsApp.
+     ============================================================ */
+  var LEADS_URL = "https://hutwzcjqatypbkyhmsxa.supabase.co/rest/v1/masterclass_leads";
+  var LEADS_KEY = "sb_publishable_kypdytoSVQn9DVUhJoujPg_gx-gM7jk";
+  // Optional: also mirror to a Google Sheet (Apps Script /exec URL). Leave "" to skip.
   var SHEET_ENDPOINT = "";
+
+  /* Remember which ad brought them in, even after they scroll or reload. */
+  var ATTR_KEY = "blush_attr";
+  function captureAttribution() {
+    var q = new URLSearchParams(location.search);
+    var keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "fbclid", "gclid"];
+    var found = {}, any = false;
+    keys.forEach(function (k) { var v = q.get(k); if (v) { found[k] = v; any = true; } });
+    try {
+      if (any) { sessionStorage.setItem(ATTR_KEY, JSON.stringify(found)); return found; }
+      var saved = sessionStorage.getItem(ATTR_KEY);
+      return saved ? JSON.parse(saved) : {};
+    } catch (err) { return found; }
+  }
+  var attribution = captureAttribution();
+
+  function saveLead(lead) {
+    var row = {
+      name: lead.name, phone: lead.phone, city: lead.city || null,
+      utm_source: attribution.utm_source || null,
+      utm_medium: attribution.utm_medium || null,
+      utm_campaign: attribution.utm_campaign || null,
+      utm_content: attribution.utm_content || null,
+      fbclid: attribution.fbclid || null,
+      gclid: attribution.gclid || null,
+      referrer: document.referrer || null,
+      page_url: location.href,
+      user_agent: navigator.userAgent
+    };
+    // keepalive lets the request finish even as WhatsApp opens.
+    try {
+      fetch(LEADS_URL, {
+        method: "POST",
+        keepalive: true,
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": LEADS_KEY,
+          "Authorization": "Bearer " + LEADS_KEY,
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify(row)
+      }).catch(function () {});
+    } catch (err) {}
+
+    if (SHEET_ENDPOINT) {
+      try {
+        fetch(SHEET_ENDPOINT, {
+          method: "POST", mode: "no-cors", keepalive: true,
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(row)
+        }).catch(function () {});
+      } catch (err) {}
+    }
+  }
+
   var form = document.getElementById("reserveForm");
   if (form) {
     form.addEventListener("submit", function (e) {
@@ -157,17 +218,9 @@
       var city = f["city"].value.trim();
       if (!name) { f["name"].focus(); return; }
       if (!phone) { f["phone"].focus(); return; }
-      // 1) Log the lead to your Google Sheet (fire-and-forget)
-      if (SHEET_ENDPOINT) {
-        try {
-          fetch(SHEET_ENDPOINT, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify({ name: name, phone: phone, city: city, page: location.href, submittedAt: new Date().toISOString() })
-          });
-        } catch (err) {}
-      }
+
+      // 1) Save the lead first, so it is never lost
+      saveLead({ name: name, phone: phone, city: city });
       // 2) Fire the single conversion event (Meta / GA4 / Google Ads)
       if (window.blushTrack) window.blushTrack.convert("form");
       // 3) Open WhatsApp with the details prefilled

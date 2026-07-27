@@ -569,3 +569,42 @@ strong { font-weight: 500; color: var(--ink); }
 }
 .rform__done-title { font-family: var(--serif); font-size: 1.35rem; color: var(--heading); margin: 0 0 .35rem; }
 .rform__done-copy { font-size: .86rem; color: var(--ink-soft); margin: 0 0 1rem; }
+
+/* ---- Hero capture form (above the fold, for paid traffic) ---- */
+.heroform {
+  margin: 0 0 1.6rem;
+  padding: 1.1rem 1.1rem 1rem;
+  background: rgba(255, 255, 255, .62);
+  border: 1px solid var(--line-gold);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  max-width: 480px;
+}
+.heroform__title { font-size: .95rem; color: var(--ink-soft); margin: 0 0 .7rem; }
+.heroform__title strong { font-family: var(--serif); font-size: 1.25rem; color: var(--heading); font-weight: 600; }
+.heroform__title s { color: var(--ink-mute); opacity: .7; margin-left: .2rem; }
+.heroform__row { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-bottom: .6rem; }
+.heroform input {
+  width: 100%; font-family: var(--sans); font-size: .95rem; color: var(--ink);
+  padding: .8rem .85rem; border: 1px solid var(--line); border-radius: 8px;
+  background: #fff; transition: border-color .2s, box-shadow .2s;
+}
+.heroform input::placeholder { color: var(--ink-mute); }
+.heroform input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(176,138,79,.14); }
+.heroform .btn { padding: .95em 1.4em; }
+.heroform__priv { font-size: .7rem; color: var(--ink-mute); text-align: center; margin: .6rem 0 0; }
+
+@media (max-width: 720px) {
+  .heroform { max-width: none; padding: 1rem .9rem .9rem; }
+  .heroform__row { grid-template-columns: 1fr; gap: .45rem; }
+  /* On phones the fold is precious: put the form first, details after. */
+  .hero__copy { display: flex; flex-direction: column; }
+  .hero__copy .eyebrow      { order: 1; }
+  .hero__copy .hero__title  { order: 2; }
+  .hero__copy .hero__lead   { order: 3; }
+  .hero__copy .heroform     { order: 4; }
+  .hero__copy .facts        { order: 5; }
+  .hero__copy .hero__cd     { order: 6; }
+  .hero__copy .hero__cta    { order: 7; }
+  .hero__copy .hero__note   { order: 8; }
+}

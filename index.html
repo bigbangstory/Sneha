@@ -76,6 +76,20 @@
             nighttime glamour.
           </p>
 
+          <!-- Above-the-fold capture. Cold ad traffic converts here or not at all. -->
+          <form class="heroform js-lead-form" id="heroForm" novalidate>
+            <p class="heroform__title">
+              <span class="eb-on">Reserve at <strong>₹5,000</strong> <s>₹7,500</s> + GST</span>
+              <span class="eb-off">Reserve your seat, <strong>₹7,500</strong> + GST</span>
+            </p>
+            <div class="heroform__row">
+              <input type="text" name="name" required autocomplete="name" placeholder="Your name" aria-label="Your name" />
+              <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="WhatsApp number" aria-label="WhatsApp number" />
+            </div>
+            <button type="submit" class="btn btn--gold btn--block">Reserve my seat →</button>
+            <p class="heroform__priv">🔒 Only about your seat. No spam. Limited seats.</p>
+          </form>
+
           <ul class="facts" aria-label="Class details">
             <li><span class="facts__k">When</span><span class="facts__v">Sun · 30 Aug 2026</span></li>
             <li><span class="facts__k">Time</span><span class="facts__v">11:00 AM – 2:30 PM IST</span></li>
@@ -406,7 +420,7 @@
             <li>Certificate of completion</li>
             <li>Career &amp; personal-branding guidance</li>
           </ul>
-          <form class="rform" id="reserveForm" novalidate>
+          <form class="rform js-lead-form" id="reserveForm" novalidate>
             <label class="rform__field">
               <span>Full name</span>
               <input type="text" name="name" required autocomplete="name" placeholder="Your name" />

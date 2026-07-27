@@ -209,16 +209,16 @@
     }
   }
 
-  var form = document.getElementById("reserveForm");
-  if (form) {
+  // Both the hero form and the price-card form use the same pipeline.
+  document.querySelectorAll(".js-lead-form").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var f = form.elements;
-      var name = f["name"].value.trim();
-      var phone = f["phone"].value.trim();
-      var city = f["city"].value.trim();
-      if (!name) { f["name"].focus(); return; }
-      if (!phone) { f["phone"].focus(); return; }
+      var name = f["name"] ? f["name"].value.trim() : "";
+      var phone = f["phone"] ? f["phone"].value.trim() : "";
+      var city = f["city"] ? f["city"].value.trim() : "";
+      if (!name) { if (f["name"]) f["name"].focus(); return; }
+      if (!phone) { if (f["phone"]) f["phone"].focus(); return; }
 
       // 1) Save the lead first, so it is never lost
       saveLead({ name: name, phone: phone, city: city });
@@ -233,13 +233,13 @@
       var waUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
       window.open(waUrl, "_blank", "noopener");
       // 4) Confirm on-page, with a manual link in case the popup was blocked
-      showFormSuccess(name, waUrl);
+      showFormSuccess(form, name, waUrl);
     });
-  }
+  });
 
   /* Replace the form with a confirmation, so the visitor knows we have their
      details even if WhatsApp did not open. */
-  function showFormSuccess(name, waUrl) {
+  function showFormSuccess(form, name, waUrl) {
     var box = document.createElement("div");
     box.className = "rform__done";
     box.setAttribute("role", "status");

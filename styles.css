@@ -557,3 +557,15 @@ strong { font-weight: 500; color: var(--ink); }
   .countdown--sm .countdown__unit { min-width: 0; flex: 1; }
   .countdown--sm .countdown__num { font-size: 1.15rem; }
 }
+
+/* ---- Reserve form: confirmation state ---- */
+.rform__done {
+  border: 1px solid var(--line-gold);
+  background: rgba(176, 138, 79, .08);
+  border-radius: 10px;
+  padding: 1.4rem 1.2rem;
+  text-align: center;
+  margin-top: .4rem;
+}
+.rform__done-title { font-family: var(--serif); font-size: 1.35rem; color: var(--heading); margin: 0 0 .35rem; }
+.rform__done-copy { font-size: .86rem; color: var(--ink-soft); margin: 0 0 1rem; }

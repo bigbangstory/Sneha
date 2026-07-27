@@ -149,6 +149,7 @@
      table BEFORE WhatsApp opens, so the lead is recorded even if the
      person never taps send in WhatsApp.
      ============================================================ */
+  var WHATSAPP_NUMBER = "919971933095";   // Sneha, receives the lead in chat
   var LEADS_URL = "https://hutwzcjqatypbkyhmsxa.supabase.co/rest/v1/masterclass_leads";
   var LEADS_KEY = "sb_publishable_kypdytoSVQn9DVUhJoujPg_gx-gM7jk";
   // Optional: also mirror to a Google Sheet (Apps Script /exec URL). Leave "" to skip.
@@ -229,9 +230,35 @@
         (eb ? " at the early bird price of Rs 5,000 + GST." : ".") +
         "\n\nName: " + name + "\nWhatsApp: " + phone + (city ? "\nCity: " + city : "") +
         "\n\nPlease share the payment details.";
-      window.open("https://wa.me/919971933095?text=" + encodeURIComponent(text), "_blank", "noopener");
+      var waUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+      window.open(waUrl, "_blank", "noopener");
+      // 4) Confirm on-page, with a manual link in case the popup was blocked
+      showFormSuccess(name, waUrl);
     });
   }
+
+  /* Replace the form with a confirmation, so the visitor knows we have their
+     details even if WhatsApp did not open. */
+  function showFormSuccess(name, waUrl) {
+    var box = document.createElement("div");
+    box.className = "rform__done";
+    box.setAttribute("role", "status");
+    box.innerHTML =
+      '<p class="rform__done-title">Thank you, ' + String(name).replace(/[<>&]/g, "") + '.</p>' +
+      '<p class="rform__done-copy">Your details are with us and we will confirm your seat on WhatsApp.</p>' +
+      '<a class="btn btn--gold btn--block" target="_blank" rel="noopener" href="' + waUrl + '">Open WhatsApp to confirm</a>';
+    form.replaceWith(box);
+  }
+
+  /* Buttons that only scroll here should land the visitor in the form. */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest ? e.target.closest('a[href="#register"]') : null;
+    if (!a) return;
+    setTimeout(function () {
+      var input = document.querySelector('#reserveForm [name="name"]');
+      if (input) { try { input.focus({ preventScroll: true }); } catch (err) { input.focus(); } }
+    }, 700);
+  });
 
   /* ---- Current year ---- */
   var yearEl = document.getElementById("year");

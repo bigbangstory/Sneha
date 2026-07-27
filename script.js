@@ -149,7 +149,7 @@
      table BEFORE WhatsApp opens, so the lead is recorded even if the
      person never taps send in WhatsApp.
      ============================================================ */
-  var WHATSAPP_NUMBER = "919971933095";   // Sneha, receives the lead in chat
+  var WHATSAPP_NUMBER = "919599571735";   // receives every lead in chat
   var LEADS_URL = "https://hutwzcjqatypbkyhmsxa.supabase.co/rest/v1/masterclass_leads";
   var LEADS_KEY = "sb_publishable_kypdytoSVQn9DVUhJoujPg_gx-gM7jk";
   // Optional: also mirror to a Google Sheet (Apps Script /exec URL). Leave "" to skip.

@@ -4,8 +4,8 @@ A high-conversion landing page for **Blush Lounge by Sneha**'s online pro bridal
 masterclass (Blush School of Beauty), built for Google & Meta ad traffic.
 
 - **Event:** Sunday, 30 August 2026 · 11:00 AM – 2:30 PM IST · Live on Zoom
-- **Fee:** ₹7,500 + GST (100% adjustable toward the in-person Delhi 2027 course)
-- **Register:** WhatsApp +91 99719 33095 · makeoverbysneha@gmail.com
+- **Fee:** ₹5,000 + GST early bird until 30 July, then ₹7,500 + GST (100% adjustable toward the in-person Delhi 2027 course)
+- **Register:** WhatsApp +91 95995 71735 · makeoverbysneha@gmail.com
 
 ## Files
 
@@ -29,23 +29,31 @@ var CONFIG = {
   ga4:       "",   // Google Analytics 4, e.g. "G-XXXXXXXXXX"
   googleAds: "",   // Google Ads conversion ID, e.g. "AW-123456789"
   adsLabel:  "",   // Google Ads conversion LABEL for a lead
-  metaPixel: ""    // Meta (Facebook) Pixel ID
+  metaPixel: "3444548752378307"   // Meta Pixel (already set)
 };
 ```
 
 Leave any entry as `""` to skip it. You can use Google Tag Manager **or** the direct
-GA4 / Google Ads tags, or both. Also replace `PIXEL_ID` in the `<noscript>` Meta tag
-inside `index.html` once you have the pixel.
+GA4 / Google Ads tags, or both. The Meta Pixel is already live (including the
+`<noscript>` fallback in `index.html`); the Google entries are still blank.
 
-**Events that fire automatically** (already wired to every button):
+**There is exactly ONE conversion event**, so Events Manager stays clean and you
+only ever optimise toward a single action:
 
 | Action | Google | Meta | dataLayer (for GTM) |
 |--------|--------|------|---------------------|
-| Page load | PageView | PageView |, |
-| Reserve via WhatsApp / Register by email | Ads conversion + GA4 `generate_lead` | `Lead` | `reserve_lead` |
-| "Reserve seat" (scroll-to-form) clicks | GA4 `begin_checkout` | `InitiateCheckout` | `reserve_intent` |
+| Page load | `page_view` | `PageView` | , |
+| Any contact: form submit, WhatsApp, call or email | Ads conversion + GA4 `generate_lead` | `Lead` | `reserve_lead` |
+| "Reserve seat" buttons that only scroll | , | , | `reserve_intent` |
 
-Lead value is set to ₹7,500 (INR) so ad platforms can optimise on value.
+The conversion is **de-duplicated per visit**, so one person tapping several
+buttons still counts once. How they got in touch rides along as the
+`contact_method` parameter (`form` / `whatsapp` / `call` / `email`) rather than
+creating extra event types. Any `tel:`, `wa.me` or `mailto:` link anywhere on the
+page counts automatically, so a call button added later needs no tracking code.
+
+Lead value follows the real price: ₹5,000 during the early bird, ₹7,500 after,
+so ROAS reporting stays accurate.
 
 > Tip: keep your `?utm_source=...` ad parameters in the landing-page URL, GA4 and
 > the pixels read them automatically.
@@ -65,13 +73,27 @@ python3 -m http.server 8000
 
 All three serve static files directly; no configuration needed.
 
-## Registration form → WhatsApp + Google Sheet
+## Where the leads go
 
-On submit the form (1) logs the lead to your Google Sheet, (2) fires the `Lead` conversion
-event, and (3) opens WhatsApp with the name / number / city pre-filled to `+91 99719 33095`.
-There's also an email fallback link.
+Every button on the page (floating WhatsApp, Reserve Seat, sticky bar) routes to
+the reserve form, so contact details are always captured. On submit the form:
 
-### Connect your leads Google Sheet (one-time)
+1. **Saves the lead to Supabase** (project `bbs-flowboard`, table
+   `masterclass_leads`) with name, phone, city, and the ad that produced it
+   (`utm_*`, `fbclid`, `gclid`, referrer). This happens *before* WhatsApp opens,
+   using `keepalive`, so the lead is recorded even if the visitor never taps send.
+2. Fires the single `Lead` conversion event.
+3. Opens WhatsApp pre-filled to `+91 95995 71735`, then shows an on-page
+   confirmation with a manual WhatsApp link in case the popup was blocked.
+
+The table is **insert-only** for the public key: the site can submit a lead but
+cannot read the list back, so nobody can harvest leads from the page source.
+
+**Viewing leads:** supabase.com → `bbs-flowboard` → Table Editor →
+`masterclass_leads`. An hourly routine also pushes new leads to phone and email
+via the `leads-digest` edge function.
+
+### Optional: also mirror to a Google Sheet
 
 1. Open the Sheet → **Extensions → Apps Script**.
 2. Replace the code with:
